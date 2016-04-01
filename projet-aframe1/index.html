@@ -8,6 +8,7 @@
     <body>
         <a-scene>
             <a-assets>
+                <!-- pillar : Ne marche pas bien -->
                 <a-mixin id="pillar"
                     geometry="primitive: cylinder; height: 8; radius: .5; translate: 0 4 0"
                     material="color: white"
@@ -15,29 +16,45 @@
             </a-assets>
 
             <template is="a-template" element="a-platform">
-                <a-cylinder height="8" radius=".5" translate="24 0 24"></a-entity>
-                <a-cylinder height="8" radius=".5" translate="-24 0 24"></a-entity>
-                <a-cylinder height="8" radius=".5" translate="24 0 -24"></a-entity>
-                <a-cylinder height="8" radius=".5" translate="-24 0 -24"></a-entity>
-                <a-cube depth="2" width="50" height="50" rotation="-90 0 0" translate="0 0 4"></a-plane>
+                <a-cylinder height="5.5" radius=".4" translate="24 0 24"></a-entity>
+                <a-cylinder height="5.5" radius=".4" translate="-24 0 24"></a-entity>
+                <a-cylinder height="5.5" radius=".4" translate="24 0 -24"></a-entity>
+                <a-cylinder height="5.5" radius=".4" translate="-24 0 -24"></a-entity>
+                <a-cube depth="1" width="50" height="50" rotation="-90 0 0" translate="0 0 3"></a-plane>
             </template>
 
             <template is="a-template" element="a-landmark">
                 <a-sphere radius=".2" ></a-sphere>
-                <a-cylinder height="2" color="green"  radius=".05" translate="0 1 0"></a-cylinder>
-                <a-cylinder height="2" color="red"   radius=".05" translate="0 1 0" rotation="0 0 -90"></a-cylinder>
-                <a-cylinder height="2" color="blue" radius=".05" translate="0 1 0" rotation="90 0 0"></a-cylinder>
+                <!-- Y --><a-cylinder height="2" color="green"  radius=".05" translate="0 1 0"></a-cylinder>
+                <!-- X --><a-cylinder height="2" color="red"   radius=".05" translate="0 1 0" rotation="0 0 -90"></a-cylinder>
+                <!-- Z --><a-cylinder height="2" color="blue" radius=".05" translate="0 1 0" rotation="90 0 0"></a-cylinder>
             </template>
             
         
             <a-sky src="images/sky.jpg" rotation="0 140 0"></a-sky>
 
-            <a-light color="white" position="0 100 -60"></a-light>
+            <!-- Soleil --><a-sphere
+                radius="5"
+                shader="flat" color="orange" light="type: point"
+                position="-50 100 -30"
+            ></a-sphere>
 
-            <a-camera  cursor-visible="false" position="0 1.8 0" wasd-controls-fly="true"></a-camera>
-
+            <a-camera  cursor-visible="false" position="0 1.8 -30"></a-camera>
             <a-landmark position="-3 0 -5"></a-landmark>
-            <a-platform position="0 -10 -60"></a-platform>
+<!--             <a-landmark position="0 0 -60"></a-landmark> -->
+            
+            <a-platform position="0 -3 -60">
+                <a-sphere radius=".5" shader="flat" color="lightblue" light="type: point; intensity: .1" position="0 6 0"></a-sphere>
+                <a-landmark position="0 3.5 0"></a-landmark>
+                
+                <a-cube color="white" depth=".5" width="20" height="7" translate="0 7 -14.75"></a-cube>
+                <a-cube color="white" depth=".5" width="30" height="7" translate="0 7 -9.75" rotation="0 -90 0"></a-cube>
+                <a-cube color="white" depth=".5" width="30" height="7" translate="0 7 -9.75" rotation="0 90 0"></a-cube>
+                <a-cube color="white" depth=".5" width="20" height="30" translate="0 0 -7" rotation="90 0 0"></a-cube>
+
+                <a-cube color="white" depth=".5" width="8" height="7" translate="6 7 14.75"></a-cube>
+                <a-cube color="white" depth=".5" width="8" height="7" translate="-6 7 14.75"></a-cube>
+            </a-platform>
 
             <!-- Examples/ -->
             <!--<a-sphere   id="origine" radius="0.1" color="red"> </a-sphere>
