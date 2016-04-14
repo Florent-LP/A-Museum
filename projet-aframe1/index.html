@@ -16,11 +16,23 @@
             </a-assets>
 
             <template is="a-template" element="a-platform">
-                <a-cylinder height="5.5" radius=".4" translate="24 0 24"></a-entity>
-                <a-cylinder height="5.5" radius=".4" translate="-24 0 24"></a-entity>
-                <a-cylinder height="5.5" radius=".4" translate="24 0 -24"></a-entity>
-                <a-cylinder height="5.5" radius=".4" translate="-24 0 -24"></a-entity>
-                <a-cube depth="1" width="50" height="50" rotation="-90 0 0" translate="0 0 3"></a-plane>
+                <a-cylinder height="6" radius=".3" translate="14 0 14"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="4.75 0 14"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="14 0 4.75"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="4.75 0 4.75"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="-14 0 14"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="-4.75 0 14"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="-14 0 4.75"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="-4.75 0 4.75"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="14 0 -14"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="4.75 0 -14"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="14 0 -4.75"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="4.75 0 -4.75"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="-14 0 -14"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="-4.75 0 -14"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="-14 0 -4.75"></a-cylinder>
+                <a-cylinder height="6" radius=".3" translate="-4.75 0 -4.75"></a-cylinder>
+                <a-cube depth=".5" width="30" height="30" rotation="-90 0 0" translate="0 0 3"></a-cube>
             </template>
 
             <template is="a-template" element="a-landmark">
@@ -29,31 +41,66 @@
                 <!-- X --><a-cylinder height="2" color="red"   radius=".05" translate="0 1 0" rotation="0 0 -90"></a-cylinder>
                 <!-- Z --><a-cylinder height="2" color="blue" radius=".05" translate="0 1 0" rotation="90 0 0"></a-cylinder>
             </template>
-            
-        
-            <a-sky src="images/sky.jpg" rotation="0 140 0"></a-sky>
 
-            <!-- Soleil --><a-sphere
-                radius="5"
+
+            <a-sky src="images/sky.jpg" rotation="0 0 0"></a-sky>
+
+            <!-- Soleil (avec shpere) --><!--<a-sphere
+                radius="50"
                 shader="flat" color="orange" light="type: point"
-                position="-50 100 -30"
-            ></a-sphere>
+                position="1050 1000 60"
+            ></a-sphere>-->
+            <!-- Soleil (sans sphère) --><a-light
+                color="white"
+                type="directional"
+                position="1.05 1 .6"
+                intensity=".1"
+            ></a-light>
+            <!-- Lumière solaire reflétée (bug : intensité ignorée)--><a-light
+                color="white"
+                type="ambient"
+                intensity=".1"
+            ></a-light>
 
-            <a-camera  cursor-visible="false" position="0 1.8 -30"></a-camera>
+            <!-- Sol --><a-plane color="#0088FF" width="1000" height="1000" rotation="-90 0 0" translate="0 0 -5.75"></a-plane>
+
+            <a-camera  cursor-visible="false" position="0 1.75 -30"></a-camera>
             <a-landmark position="-3 0 -5"></a-landmark>
 <!--             <a-landmark position="0 0 -60"></a-landmark> -->
-            
-            <a-platform position="0 -3 -60">
-                <a-sphere radius=".5" shader="flat" color="lightblue" light="type: point; intensity: .1" position="0 6 0"></a-sphere>
-                <a-landmark position="0 3.5 0"></a-landmark>
-                
-                <a-cube color="white" depth=".5" width="20" height="7" translate="0 7 -14.75"></a-cube>
-                <a-cube color="white" depth=".5" width="30" height="7" translate="0 7 -9.75" rotation="0 -90 0"></a-cube>
-                <a-cube color="white" depth=".5" width="30" height="7" translate="0 7 -9.75" rotation="0 90 0"></a-cube>
-                <a-cube color="white" depth=".5" width="20" height="30" translate="0 0 -7" rotation="90 0 0"></a-cube>
 
-                <a-cube color="white" depth=".5" width="8" height="7" translate="6 7 14.75"></a-cube>
-                <a-cube color="white" depth=".5" width="8" height="7" translate="-6 7 14.75"></a-cube>
+            <a-platform position="0 -3.25 -60">
+                <a-sphere radius=".5" shader="flat" color="lightblue" light="type: point; intensity: .25" position="0 6 0"></a-sphere>
+                <a-landmark position="0 3.25 0"></a-landmark>
+
+
+                <!--<a-cube color="white" depth=".25" width="13" height="3" translate="8.5 4.750 4.875"></a-cube>
+                <a-cube color="white" depth=".25" width="13" height="3" translate="-8.5 4.750 4.875"></a-cube>-->
+
+                <!-- Mezzanine -->
+                <a-cube color="grey" depth=".25" width="30" height="10" translate="0 -10 -6.375" rotation="90 0 0"></a-cube>
+
+                <!-- Cloisons fixes -->
+                <a-cube color="grey" depth=".25" width="10" height="3" translate="10 4.75 0" rotation="0 90 0"></a-cube>
+                <a-cube color="grey" depth=".25" width="4" height="3" translate="7 4.75 7.5" rotation="0 90 0"></a-cube><a-cube color="grey" depth=".25" width="4" height="3" translate="13 4.75 7.5" rotation="0 90 0"></a-cube>
+                <a-cube color="grey" depth=".25" width="10" height="3" translate="10 4.75 -7.5" rotation="0 90 0"></a-cube>
+
+                <a-cube color="grey" depth=".25" width="4.5" height="3" translate="0 4.75 -5.125"></a-cube>
+                <a-cube color="grey" depth=".25" width="4.5" height="3" translate="7.5 4.75 -5.125"></a-cube>
+                <a-cube color="grey" depth=".25" width="4.5" height="3" translate="-7.5 4.75 -5.125"></a-cube>
+                <a-cube color="grey" depth=".25" width="2.25" height="3" translate="13.875 4.75 -5.125"></a-cube>
+                <a-cube color="grey" depth=".25" width="2.25" height="3" translate="-13.875 4.75 -5.125"></a-cube>
+
+                <!-- Murs principaux -->
+                <a-cube color="grey" depth=".25" width="30" height="6" translate="0 6.25 -14.875"></a-cube>
+                <a-cube color="grey" depth=".25" width="20" height="6" translate="-5 6.25 -14.875" rotation="0 -90 0"></a-cube>
+                <a-cube color="grey" depth=".25" width="20" height="6" translate="5 6.25 -14.875" rotation="0 90 0"></a-cube>
+
+                <a-cube color="grey" depth=".25" width="13" height="6" translate="8.5 6.25 4.875"></a-cube>
+                <a-cube color="grey" depth=".25" width="13" height="6" translate="-8.5 6.25 4.875"></a-cube>
+                <a-cube color="grey" depth=".25" width="4" height="3" translate="0 7.75 4.875"></a-cube>
+
+                <!-- Plafond -->
+                <a-cube color="grey" depth=".25" width="30" height="25" translate="0 -2.5 -9.375" rotation="90 0 0"></a-cube>
             </a-platform>
 
             <!-- Examples/ -->

@@ -1,0 +1,22 @@
+Statique :
+- textures murs
+- vitres (murs, plafond)
+- lumières
+- portes
+- cloisons amovibles
+- flèches (guide)
+- panneaux (écrits)
+- 3 escaliers
+- film (1 min), déclenché sur présence dans pièce
+- tableaux, cartes
+- reliques, bouquins
+- mobilier
+- joli balcon
+- plage/mer réalistes
+
+Dynamique :
+- point & click -> déplacement vers objet + arrêt à 0.5m (possibilité interruption et cam != direction)
+- fixe tableau -> fichier son (arrêt si plus fixé)
+- fixe relique -> éclairage
+- ambiance sonore selon lieu
+- parcours via objets remarquables (objet actuel -> reliques associées éclairées / objets suivants signalés via changement de couleur)
