@@ -1,6 +1,6 @@
 Statique (à finir vite) :
-- textures murs
-- vitres (murs, plafond)
++ textures murs
++ vitres (murs, plafond)
 - lumières pièces
 - portes
 - cloisons amovibles
