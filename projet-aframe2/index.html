@@ -6,26 +6,33 @@
         <script src="dist/aframe.min.js"></script>
     </head>
     <body>
-        <a-scene>
+        <a-scene stats>
             <a-assets>
-                <!-- Assets slow (textures) -->
-                <!-- <img id="skybox" src="images/sky.jpg">
+                <!-- Textures slow (textures) -->
+                <!--<img id="skybox" src="images/sky.jpg">
                 <img id="terrasse" src="images/textures/terrasse.jpg">
                 <img id="parquet" src="images/textures/parquet.jpg">
                 <img id="mur" src="images/textures/mur2.jpg">
                 <img id="vitre" src="images/textures/verre.png">
-                <a-mixin id="pillier" material="src: url(images/textures/pillier.jpg); repeat: 2 3;"> -->
+                <img id="pillier" src="images/textures/pillier.jpg">
+                <a-mixin id="pillier" material="src: #pillier; repeat: 2 3;">-->
 
-                <!-- Assets fast (debug) -->
+                <!-- Textures fast (debug) -->
                 <img id="skybox" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOs////PwAIAAN+P+P0CgAAAABJRU5ErkJggg==">
                 <img id="terrasse" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcksLwHwAFBQIZtcb7ngAAAABJRU5ErkJggg==">
                 <img id="parquet" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8cILhPwAHIQK5QliE3QAAAABJRU5ErkJggg==">
                 <img id="mur" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM88x8AAp0BzdNtlUkAAAAASUVORK5CYII=">
                 <img id="vitre" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOs////PwAIAAN+P+P0CgAAAABJRU5ErkJggg==">
+                <img id="pillier" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcksLwHwAFBQIZtcb7ngAAAABJRU5ErkJggg==">
                 <a-mixin id="pillier" material="color: orange;">
+
+                <!-- Models -->
+                <a-asset-item id="stairs-obj" src="models/stairs/stairs.obj">
+                <a-asset-item id="ladder-obj" src="models/stairs/ladder.obj">
+                <a-asset-item id="ladder-mtl" src="models/stairs/ladder.mtl">
             </a-assets>
 
-            <a-camera cursor-visible="false" position="0 1.75 -45" wasd-controls="fly: true;"></a-camera>
+            <a-camera cursor-visible="false" position="0 1.75 -50" wasd-controls="fly: true;"></a-camera>
 
             <a-sky src="#skybox" rotation="0 0 0"></a-sky>
 
@@ -41,7 +48,7 @@
                 color="white"
                 type="directional"
                 position="1.05 1 .6"
-                intensity="1"
+                intensity=".5"
             ></a-light>
 
             <!-- Lumière solaire reflétée (Bug : intensity -> Solution : color)-->
@@ -75,6 +82,12 @@
                 <a-box material="src: #terrasse; repeat: 10 10;" depth=".5" width="30" height="30" rotation="-90 0 0" translate="0 0 3"></a-box>
                 <a-plane material="src: #parquet; repeat: 6 4;" width="30" height="20" rotation="-90 0 0" translate="0 5 3.251"></a-plane>
 
+                <a-obj-model src="#ladder-obj" mtl="#ladder-mtl" position="9 0 15" scale=".02 .02 .02"></a-obj-model>
+                <a-obj-model src="#ladder-obj" mtl="#ladder-mtl" position="0 0 15" scale=".02 .02 .02"></a-obj-model>
+                <a-obj-model src="#ladder-obj" mtl="#ladder-mtl" position="-9 0 15" scale=".02 .02 .02"></a-obj-model>
+
+                <a-box material="src: #pillier; repeat: 14 1" depth=".8" width="28" height="1" translate="0 0 14.7"></a-box>
+
                 <!-- Repère -->
                 <a-entity position="0 3.25 0">
                     <a-sphere color="grey" radius=".2" ></a-sphere>
@@ -85,7 +98,7 @@
 
 
                 <!-- Lampe -->
-                <a-sphere radius=".5" shader="flat" color="lightblue" light="type: point; intensity: .5; color: lightblue;" position="0 6 0"></a-sphere>
+                <a-sphere radius=".5" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
 
                 <!--<a-cube color="white" depth=".25" width="13" height="3" translate="8.5 4.750 4.875"></a-cube>
                 <a-cube color="white" depth=".25" width="13" height="3" translate="-8.5 4.750 4.875"></a-cube>-->
@@ -134,6 +147,12 @@
 
                 <!-- Plafond -->
                 <a-box material="src: #mur; repeat: 15 12.5;" depth=".25" width="29.998" height="25" translate="0 -2.5 -9.375" rotation="90 0 0"></a-box>
+
+                <!-- Mobilier & objets -->
+                <a-entity position="0 3.25 0">
+                    <a-obj-model src="#stairs-obj" color="lightgrey" metalness="1" position="7.5 1.6 -1.3" scale=".7 .7 .7"></a-obj-model>
+                    <a-obj-model src="#stairs-obj" color="lightgrey" metalness="1" position="-7.5 1.6 -1.3" scale=".7 .7 .7"></a-obj-model>
+                </a-entity>
             </a-entity>
         </a-scene>
     </body>
