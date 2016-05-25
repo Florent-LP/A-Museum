@@ -1,16 +1,20 @@
 Statique (à finir vite) :
 + textures murs
 + vitres (murs, plafond)
-- lumières pièces
++ 3 escaliers
 - portes
-- cloisons amovibles
+
++ film (1 min)
+- déclenché sur présence dans pièce
+- lumières pièces
++ cloisons amovibles
 - flèches (guide)
 - panneaux (écrits)
-- 3 escaliers
-- film (1 min), déclenché sur présence dans pièce
+
 - tableaux, cartes
 - reliques, bouquins
 - mobilier
+
 - joli balcon
 - plage/mer réalistes
 
