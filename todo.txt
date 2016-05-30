@@ -19,7 +19,7 @@ Statique (à finir vite) :
 - plage/mer réalistes
 
 Dynamique :
-- point & click -> déplacement vers objet + arrêt à 0.5m (possibilité interruption et cam != direction)
+- point & click -> déplacement vers objet + arrêt à 0.5m (possibilité interruption et cam != direction) http://vrspace.jmvisualcreativity.es/
 - fixe tableau -> fichier son (arrêt si plus fixé)
 - fixe relique -> éclairage
 - ambiance sonore selon lieu
