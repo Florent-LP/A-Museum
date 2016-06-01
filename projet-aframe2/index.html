@@ -3,11 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title>Ys Museum</title>
-        <script src="dist2/aframe.js"></script>
+        <script src="dist/aframe.min.js"></script>
+        <script src="dist/aframe-extras.min.js"></script>
         <script src="scripts/raycaster-helper.js"></script>
     </head>
     <body>
-        <a-scene stats>
+        <a-scene physics stats>
             <a-assets>
                 <!-- Textures slow (textures) -->
                 <!--<img id="skybox" src="images/sky.jpg">
@@ -18,7 +19,7 @@
                 <img id="pillier" src="images/textures/pillier.jpg">
                 <a-mixin id="pillier" material="src: #pillier; repeat: 2 3;">-->
 
-                <!-- Textures fast (debug) --> <!-- TODO : Appliquer les textures (voir terrasse) -->
+                <!-- Textures fast (debug) -->
                 <img id="skybox" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOs////PwAIAAN+P+P0CgAAAABJRU5ErkJggg==">
                 <img id="terrasse" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcksLwHwAFBQIZtcb7ngAAAABJRU5ErkJggg==">
                 <img id="parquet" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8cILhPwAHIQK5QliE3QAAAABJRU5ErkJggg==">
@@ -37,7 +38,8 @@
             </a-assets>
 
             <a-entity position="0 1.75 -50">
-                <a-entity camera look-controls wasd-controls="fly: false">
+                <!-- <a-entity camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5;"> -->
+                <a-entity camera look-controls wasd-controls="fly: true">
                         <!-- <a-entity raycaster-helper material="color: red" raycaster="objects: .collidable" position="0 -1 -2"></a-entity> -->
                         <a-entity raycaster="objects: .collidable; far: 4; interval: 1000" rotation="-90 0 0"></a-entity><!-- Détection pièce -->
                 </a-entity>
@@ -67,35 +69,35 @@
             ></a-light>
 
             <!-- Sol -->
-            <a-plane color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -5.75 0"></a-plane>
+            <a-plane static-body color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -5.75 0"></a-plane>
 
             <a-entity position="0 -3.25 -60"> <!-- Note : J'enlève 0.002 aux largeurs pour éviter le scintillement lié à la superposition de certains plans. -->
 
                 <!-- Plateforme -->
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 -14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 -14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 -4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 -4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 -14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 -14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 -4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 -4.75"></a-cylinder>
-                <a-box src="#terrasse" repeat="10 10" depth=".5" width="30" height="30" rotation="-90 0 0" position="0 3 0"></a-box>
-                <a-plane class="collidable" material="src: #parquet; repeat: 6 4;" width="30" height="20" rotation="-90 0 0" position="0 3.251 -5"></a-plane>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 -14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 -14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 -4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 -4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 -14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 -14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 -4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 -4.75"></a-cylinder>
+                <a-box dynamic-body="mass: .001" src="#terrasse" repeat="10 10" depth=".5" width="30" height="30" rotation="-90 0 0" position="0 3 0"></a-box>
+                <a-plane class="collidable" src="#parquet" repeat="6 4" width="30" height="20" rotation="-90 0 0" position="0 3.251 -5"></a-plane>
 
                 <a-obj-model src="#ladder-obj" position="9 0 15" scale=".02 .02 .02"></a-obj-model>
                 <a-obj-model src="#ladder-obj" position="0 0 15" scale=".02 .02 .02"></a-obj-model>
                 <a-obj-model src="#ladder-obj" position="-9 0 15" scale=".02 .02 .02"></a-obj-model>
 
-                <a-box material="src: #pillier; repeat: 14 1" depth=".8" width="28" height="1" position="0 0 14.7"></a-box>
+                <a-box src="#pillier" repeat="14 1" depth=".8" width="28" height="1" position="0 0 14.7"></a-box>
 
                 <!-- Repère -->
                 <a-entity position="0 3.25 0">
@@ -110,49 +112,49 @@
                 <a-sphere radius=".5" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
 
                 <!-- Mezzanine -->
-                <a-box material="src: #mur; repeat: 15 5;" depth=".25" width="29.998" height="9.998" position="0 6.375 -10" rotation="90 0 0"></a-box>
+                <a-box src="#mur" repeat="15 5" depth=".25" width="29.998" height="9.998" position="0 6.375 -10" rotation="90 0 0"></a-box>
 
                 <!-- Cloisons fixes -->
-                <a-box material="src: #mur; repeat: 5 1.5;" depth=".25" width="9.998" height="3" position="0 4.75 -10" rotation="0 90 0"></a-box>
-                <a-box material="src: #mur; repeat: 2 1.5;" depth=".25" width="3.998" height="3" position="7.5 4.75 -7" rotation="0 90 0"></a-box><a-box material="src: #mur; repeat: 2 1.5;" depth=".25" width="3.998" height="3" position="7.5 4.75 -13" rotation="0 90 0"></a-box>
-                <a-box material="src: #mur; repeat: 5 1.5;" depth=".25" width="9.998" height="3" position="-7.5 4.75 -10" rotation="0 90 0"></a-box>
+                <a-box src="#mur" repeat="5 1.5" depth=".25" width="9.998" height="3" position="0 4.75 -10" rotation="0 90 0"></a-box>
+                <a-box src="#mur" repeat="2 1.5" depth=".25" width="3.998" height="3" position="7.5 4.75 -7" rotation="0 90 0"></a-box><a-box src="#mur" repeat="2 1.5" depth=".25" width="3.998" height="3" position="7.5 4.75 -13" rotation="0 90 0"></a-box>
+                <a-box src="#mur" repeat="5 1.5" depth=".25" width="9.998" height="3" position="-7.5 4.75 -10" rotation="0 90 0"></a-box>
 
-                <a-box material="src: #mur; repeat: 2.25 1.5;" depth=".25" width="4.48" height="3" position="0 4.75 -5.125"></a-box>
-                <a-box material="src: #mur; repeat: 2.25 1.5;" depth=".25" width="4.48" height="3" position="7.5 4.75 -5.125"></a-box>
-                <a-box material="src: #mur; repeat: 2.25 1.5;" depth=".25" width="4.48" height="3" position="-7.5 4.75 -5.125"></a-box>
-                <a-box material="src: #mur; repeat: 1.125 1.5;" depth=".25" width="2.248" height="3" position="13.875 4.75 -5.125"></a-box>
-                <a-box material="src: #mur; repeat: 1.125 1.5;" depth=".25" width="2.248" height="3" position="-13.875 4.75 -5.125"></a-box>
+                <a-box src="#mur" repeat="2.25 1.5" depth=".25" width="4.48" height="3" position="0 4.75 -5.125"></a-box>
+                <a-box src="#mur" repeat="2.25 1.5" depth=".25" width="4.48" height="3" position="7.5 4.75 -5.125"></a-box>
+                <a-box src="#mur" repeat="2.25 1.5" depth=".25" width="4.48" height="3" position="-7.5 4.75 -5.125"></a-box>
+                <a-box src="#mur" repeat="1.125 1.5" depth=".25" width="2.248" height="3" position="13.875 4.75 -5.125"></a-box>
+                <a-box src="#mur" repeat="1.125 1.5" depth=".25" width="2.248" height="3" position="-13.875 4.75 -5.125"></a-box>
 
                 <!-- Murs principaux -->
                     <!-- Nord -->
-                <a-box material="src: #mur; repeat: 15 3;" depth=".25" width="29.998" height="6" position="0 6.25 -14.875"></a-box>
+                <a-box static-body src="#mur" repeat="15 3" depth=".25" width="29.998" height="6" position="0 6.25 -14.875"></a-box>
                     <!-- Est -->
-                <a-box material="src: #mur; repeat: 6.25 1.5;" depth=".25" width="12.498" height="3" position="14.875 4.75 -8.75" rotation="0 -90 0"></a-box>
-                <a-box material="src: #mur; repeat: 1.25 1.5;" depth=".25" width="2.498" height="3" position="14.875 4.75 3.75" rotation="0 -90 0"></a-box>
-                <a-box material="src: #vitre; repeat: 5 3; opacity: 0.5; color: lightblue;" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
+                <a-box src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="14.875 4.75 -8.75" rotation="0 -90 0"></a-box>
+                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="14.875 4.75 3.75" rotation="0 -90 0"></a-box>
+                <a-box src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
 
-                <a-box material="src: #mur; repeat: 10 1.5;" depth=".25" width="19.998" height="3" position="14.875 7.75 -5" rotation="0 -90 0"></a-box>
+                <a-box src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="14.875 7.75 -5" rotation="0 -90 0"></a-box>
                     <!-- Ouest -->
-                <a-box material="src: #mur; repeat: 6.25 1.5;" depth=".25" width="12.498" height="3" position="-14.875 4.75 -8.75" rotation="0 90 0"></a-box>
-                <a-box material="src: #mur; repeat: 1.25 1.5;" depth=".25" width="2.498" height="3" position="-14.875 4.75 3.75" rotation="0 90 0"></a-box>
-                <a-box material="src: #vitre; repeat: 5 3; opacity: 0.5; color: lightblue;" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
+                <a-box src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="-14.875 4.75 -8.75" rotation="0 90 0"></a-box>
+                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-14.875 4.75 3.75" rotation="0 90 0"></a-box>
+                <a-box src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
 
-                <a-box material="src: #mur; repeat: 10 1.5;" depth=".25" width="19.998" height="3" position="-14.875 7.75 -5" rotation="0 90 0"></a-box>
+                <a-box src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="-14.875 7.75 -5" rotation="0 90 0"></a-box>
                     <!-- Sud (Terrasse) -->
-                <a-box material="src: #mur; repeat: 1.25 1.5;" depth=".25" width="2.498" height="3" position="-3.25 4.75 4.875"></a-box>
-                <a-box material="src: #mur; repeat: 1.25 1.5;" depth=".25" width="2.498" height="3" position="-13.75 4.75 4.875"></a-box>
-                <a-box material="src: #vitre; repeat: 8 3; opacity: 0.5; color: lightblue;" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
+                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-3.25 4.75 4.875"></a-box>
+                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-13.75 4.75 4.875"></a-box>
+                <a-box src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
 
-                <a-box material="src: #mur; repeat: 1.25 1.5;" depth=".25" width="2.498" height="3" position="3.25 4.75 4.875"></a-box>
-                <a-box material="src: #mur; repeat: 1.25 1.5;" depth=".25" width="2.498" height="3" position="13.75 4.75 4.875"></a-box>
-                <a-box material="src: #vitre; repeat: 8 3; opacity: 0.5; color: lightblue;" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
+                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="3.25 4.75 4.875"></a-box>
+                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="13.75 4.75 4.875"></a-box>
+                <a-box src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
 
-                <a-box material="src: #mur; repeat: 15 1.5;" depth=".25" width="29.998" height="3" position="0 7.75 4.875"></a-box>
+                <a-box src="#mur" repeat="15 1.5" depth=".25" width="29.998" height="3" position="0 7.75 4.875"></a-box>
                     <!-- Entrée -->
-                <a-box material="src: #vitre; repeat: 4 3; opacity: 0.5; color: lightblue;" depth=".05" width="4" height="3" position="0 4.75 4.875"></a-box>
+                <a-box src="#vitre" repeat="4 3" opacity="0.5" color="lightblue" depth=".05" width="4" height="3" position="0 4.75 4.875"></a-box>
 
                 <!-- Plafond -->
-                <a-box material="src: #mur; repeat: 15 12.5;" depth=".25" width="29.998" height="25" position="0 9.375 -2.5" rotation="90 0 0"></a-box>
+                <a-box src="#mur" repeat="15 12.5" depth=".25" width="29.998" height="25" position="0 9.375 -2.5" rotation="90 0 0"></a-box>
 
                 <!-- Mobilier & objets -->
                 <a-entity position="0 3.25 0"><!-- Hall -->
