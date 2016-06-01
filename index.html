@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Ys Museum</title>
         <script src="dist/aframe.min.js"></script>
-        <script src="dist/aframe-extras.min.js"></script>
+        <!--<script src="dist/aframe-extras.min.js"></script>--><!-- Ne marche qu'avec aframe old -->
         <script src="scripts/raycaster-helper.js"></script>
     </head>
     <body>
@@ -69,28 +69,28 @@
             ></a-light>
 
             <!-- Sol -->
-            <a-plane static-body color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -5.75 0"></a-plane>
+            <a-plane color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -5.75 0"></a-plane>
 
             <a-entity position="0 -3.25 -60"> <!-- Note : J'enlève 0.002 aux largeurs pour éviter le scintillement lié à la superposition de certains plans. -->
 
                 <!-- Plateforme -->
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 14"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 14"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 4.75"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 4.75"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 14"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 14"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 4.75"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 4.75"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 -14"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 -14"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 -4.75"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 -4.75"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 -14"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 -14"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 -4.75"></a-cylinder>
-                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 -4.75"></a-cylinder>
-                <a-box dynamic-body="mass: .001" src="#terrasse" repeat="10 10" depth=".5" width="30" height="30" rotation="-90 0 0" position="0 3 0"></a-box>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 14"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 14"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 4.75"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 4.75"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 14"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 14"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 4.75"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 4.75"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 -14"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 -14"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 -4.75"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 -4.75"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 -14"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 -14"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 -4.75"></a-cylinder>
+                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 -4.75"></a-cylinder>
+                <a-box static-body src="#terrasse" repeat="10 10" depth=".5" width="30" height="30" rotation="-90 0 0" position="0 3 0"></a-box>
                 <a-plane class="collidable" src="#parquet" repeat="6 4" width="30" height="20" rotation="-90 0 0" position="0 3.251 -5"></a-plane>
 
                 <a-obj-model src="#ladder-obj" position="9 0 15" scale=".02 .02 .02"></a-obj-model>
@@ -109,7 +109,7 @@
 
 
                 <!-- Lampe -->
-                <a-sphere radius=".5" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
+                <a-sphere dynamic-body radius=".5" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
 
                 <!-- Mezzanine -->
                 <a-box src="#mur" repeat="15 5" depth=".25" width="29.998" height="9.998" position="0 6.375 -10" rotation="90 0 0"></a-box>
@@ -127,7 +127,7 @@
 
                 <!-- Murs principaux -->
                     <!-- Nord -->
-                <a-box static-body src="#mur" repeat="15 3" depth=".25" width="29.998" height="6" position="0 6.25 -14.875"></a-box>
+                <a-box src="#mur" repeat="15 3" depth=".25" width="29.998" height="6" position="0 6.25 -14.875"></a-box>
                     <!-- Est -->
                 <a-box src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="14.875 4.75 -8.75" rotation="0 -90 0"></a-box>
                 <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="14.875 4.75 3.75" rotation="0 -90 0"></a-box>
