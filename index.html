@@ -3,23 +3,26 @@
     <head>
         <meta charset="utf-8">
         <title>Ys Museum</title>
-        <script src="dist/aframe.min.js"></script>
-        <!--<script src="dist/aframe-extras.min.js"></script>--><!-- Ne marche qu'avec aframe old -->
-        <script src="scripts/raycaster-helper.js"></script>
+
+        <script src="dist/stable/aframe.min.js"></script><!-- Version stable -->
+        <script src="dist/extras/aframe-extras.min.js"></script><!-- A-frame stable seulement -->
+
+        <!--<script src="dist/rolling/aframe.min.js"></script>--><!-- Version récente -->
+        <!--<script src="scripts/raycaster-helper.js"></script>--><!-- A-frame rolling seulement -->
     </head>
     <body>
         <a-scene physics stats>
             <a-assets>
-                <!-- Textures slow (textures) -->
-                <!--<img id="skybox" src="images/sky.jpg">
-                <img id="terrasse" src="images/textures/terrasse.jpg">
-                <img id="parquet" src="images/textures/parquet.jpg">
-                <img id="mur" src="images/textures/mur2.jpg">
-                <img id="vitre" src="images/textures/verre.png">
-                <img id="pillier" src="images/textures/pillier.jpg">
+                <!-- Textures prod (lent) -->
+                <img id="skybox" src="assets/images/sky.jpg">
+                <!--<img id="terrasse" src="assets/images/textures/terrasse.jpg">
+                <img id="parquet" src="assets/images/textures/parquet.jpg">
+                <img id="mur" src="assets/images/textures/mur2.jpg">
+                <img id="vitre" src="assets/images/textures/verre.png">
+                <img id="pillier" src="assets/images/textures/pillier.jpg">
                 <a-mixin id="pillier" material="src: #pillier; repeat: 2 3;">-->
 
-                <!-- Textures fast (debug) -->
+                <!-- Textures dev (rapide) -->
                 <img id="skybox" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOs////PwAIAAN+P+P0CgAAAABJRU5ErkJggg==">
                 <img id="terrasse" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcksLwHwAFBQIZtcb7ngAAAABJRU5ErkJggg==">
                 <img id="parquet" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8cILhPwAHIQK5QliE3QAAAABJRU5ErkJggg==">
@@ -28,24 +31,18 @@
                 <img id="pillier" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcksLwHwAFBQIZtcb7ngAAAABJRU5ErkJggg==">
                 <a-mixin id="pillier" material="color: orange;">
 
-                <!-- Models -->
-                <a-asset-item id="stairs-obj" src="models/stairs/stairs.obj">
-                <a-asset-item id="ladder-obj" src="models/stairs/ladder.obj">
-                <a-asset-item id="ladder-mtl" src="models/stairs/ladder.mtl">
+                <!-- Modèles -->
+                <a-asset-item id="stairs-obj" src="assets/models/stairs/stairs.obj">
+                <a-asset-item id="ladder-obj" src="assets/models/stairs/ladder.obj">
+                <a-asset-item id="ladder-mtl" src="assets/models/stairs/ladder.mtl">
 
                 <!-- Etc -->
                 <!-- <video id="ys-movie" autoplay loop="true" src="videos/ys-movie-short.webm"> -->
             </a-assets>
 
-            <a-entity position="0 1.75 -50">
-                <!-- <a-entity camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5;"> -->
-                <a-entity camera look-controls wasd-controls="fly: true">
-                        <!-- <a-entity raycaster-helper material="color: red" raycaster="objects: .collidable" position="0 -1 -2"></a-entity> -->
-                        <a-entity raycaster="objects: .collidable; far: 4; interval: 1000" rotation="-90 0 0"></a-entity><!-- Détection pièce -->
-                </a-entity>
-            </a-entity>
 
             <a-sky src="#skybox"></a-sky>
+
 
             <!-- Soleil (avec shpere) -->
             <!--<a-sphere
@@ -68,36 +65,103 @@
                 type="ambient"
             ></a-light>
 
-            <!-- Sol -->
-            <a-plane color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -5.75 0"></a-plane>
 
             <a-entity position="0 -3.25 -60"> <!-- Note : J'enlève 0.002 aux largeurs pour éviter le scintillement lié à la superposition de certains plans. -->
+                <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5;" position="0 5 10">
+                        <!-- Détection pièce (A-frame stable seulement) -->
+                        <!-- <a-entity raycaster="objects: .collidable; far: 4; interval: 1000" rotation="-90 0 0" raycaster-helper material="color: red"></a-entity>-->
+                </a-camera>
 
-                <!-- Plateforme -->
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 -14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 -14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="14 0 -4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="4.75 0 -4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 -14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 -14"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-14 0 -4.75"></a-cylinder>
-                <a-cylinder mixin="pillier" height="6" radius=".3" position="-4.75 0 -4.75"></a-cylinder>
+
+                <!-- Mer -->
+                <a-plane static-body color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -2.5 0"></a-plane>
+
+
+                <!-- Plateforme / DÉBUT -->
+                <!-- Piliers -->
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 -14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 -14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="14 0 -4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="4.75 0 -4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 -14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 -14"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-14 0 -4.75"></a-cylinder>
+                <a-cylinder static-body mixin="pillier" height="6" radius=".3" position="-4.75 0 -4.75"></a-cylinder>
+
+                <!-- Sol -->
                 <a-box static-body src="#terrasse" repeat="10 10" depth=".5" width="30" height="30" rotation="-90 0 0" position="0 3 0"></a-box>
-                <a-plane class="collidable" src="#parquet" repeat="6 4" width="30" height="20" rotation="-90 0 0" position="0 3.251 -5"></a-plane>
+                <a-plane static-body src="#parquet" repeat="6 4" width="30" height="20" rotation="-90 0 0" position="0 3.251 -5"></a-plane>
+
+                <!-- Échelles -->
+                <a-box static-body src="#pillier" repeat="14 1" depth=".8" width="28" height="1" position="0 0 14.7"></a-box>
 
                 <a-obj-model src="#ladder-obj" position="9 0 15" scale=".02 .02 .02"></a-obj-model>
                 <a-obj-model src="#ladder-obj" position="0 0 15" scale=".02 .02 .02"></a-obj-model>
                 <a-obj-model src="#ladder-obj" position="-9 0 15" scale=".02 .02 .02"></a-obj-model>
+                <!-- Plateforme / FIN -->
 
-                <a-box src="#pillier" repeat="14 1" depth=".8" width="28" height="1" position="0 0 14.7"></a-box>
+
+                <!-- Murs principaux / DÉBUT -->
+                <!-- Nord -->
+                <a-box static-body src="#mur" repeat="15 3" depth=".25" width="29.998" height="6" position="0 6.25 -14.875"></a-box>
+
+                <!-- Est -->
+                <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="14.875 4.75 -8.75" rotation="0 -90 0"></a-box>
+                <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="14.875 4.75 3.75" rotation="0 -90 0"></a-box>
+                <a-box static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
+
+                <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="14.875 7.75 -5" rotation="0 -90 0"></a-box>
+
+                <!-- Ouest -->
+                <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="-14.875 4.75 -8.75" rotation="0 90 0"></a-box>
+                <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-14.875 4.75 3.75" rotation="0 90 0"></a-box>
+                <a-box static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
+
+                <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="-14.875 7.75 -5" rotation="0 90 0"></a-box>
+
+                <!-- Sud (Terrasse) -->
+                <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-3.25 4.75 4.875"></a-box>
+                <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-13.75 4.75 4.875"></a-box>
+                <a-box static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
+
+                <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="3.25 4.75 4.875"></a-box>
+                <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="13.75 4.75 4.875"></a-box>
+                <a-box static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
+
+                <a-box static-body src="#mur" repeat="15 1.5" depth=".25" width="29.998" height="3" position="0 7.75 4.875"></a-box>
+
+                <!-- Entrée -->
+                <a-box src="#vitre" repeat="4 3" opacity="0.5" color="lightblue" depth=".05" width="4" height="3" position="0 4.75 4.875"></a-box>
+
+                <!-- Plafond -->
+                <a-box static-body src="#mur" repeat="15 12.5" depth=".25" width="29.998" height="25" position="0 9.375 -2.5" rotation="90 0 0"></a-box>
+                <!-- Murs principaux / FIN -->
+
+
+                <!-- Murs intérieurs / DÉBUT -->
+                <!-- Mezzanine -->
+                <a-box static-body src="#mur" repeat="15 5" depth=".25" width="29.998" height="9.998" position="0 6.375 -10" rotation="90 0 0"></a-box>
+
+                <!-- Cloisons fixes -->
+                <a-box static-body src="#mur" repeat="5 1.5" depth=".25" width="9.998" height="3" position="0 4.75 -10" rotation="0 90 0"></a-box>
+                <a-box static-body src="#mur" repeat="2 1.5" depth=".25" width="3.998" height="3" position="7.5 4.75 -7" rotation="0 90 0"></a-box><a-box src="#mur" repeat="2 1.5" depth=".25" width="3.998" height="3" position="7.5 4.75 -13" rotation="0 90 0"></a-box>
+                <a-box static-body src="#mur" repeat="5 1.5" depth=".25" width="9.998" height="3" position="-7.5 4.75 -10" rotation="0 90 0"></a-box>
+
+                <a-box static-body src="#mur" repeat="2.25 1.5" depth=".25" width="4.48" height="3" position="0 4.75 -5.125"></a-box>
+                <a-box static-body src="#mur" repeat="2.25 1.5" depth=".25" width="4.48" height="3" position="7.5 4.75 -5.125"></a-box>
+                <a-box static-body src="#mur" repeat="2.25 1.5" depth=".25" width="4.48" height="3" position="-7.5 4.75 -5.125"></a-box>
+                <a-box static-body src="#mur" repeat="1.125 1.5" depth=".25" width="2.248" height="3" position="13.875 4.75 -5.125"></a-box>
+                <a-box static-body src="#mur" repeat="1.125 1.5" depth=".25" width="2.248" height="3" position="-13.875 4.75 -5.125"></a-box>
+                <!-- Murs intérieurs / FIN -->
+
 
                 <!-- Repère -->
                 <a-entity position="0 3.25 0">
@@ -107,93 +171,70 @@
                     <!-- Z --><a-cylinder height="2" color="blue" radius=".05" position="0 0 1" rotation="90 0 0"></a-cylinder>
                 </a-entity>
 
-
                 <!-- Lampe -->
-                <a-sphere dynamic-body radius=".5" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
+                <a-sphere dynamic-body radius=".4" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
 
-                <!-- Mezzanine -->
-                <a-box src="#mur" repeat="15 5" depth=".25" width="29.998" height="9.998" position="0 6.375 -10" rotation="90 0 0"></a-box>
-
-                <!-- Cloisons fixes -->
-                <a-box src="#mur" repeat="5 1.5" depth=".25" width="9.998" height="3" position="0 4.75 -10" rotation="0 90 0"></a-box>
-                <a-box src="#mur" repeat="2 1.5" depth=".25" width="3.998" height="3" position="7.5 4.75 -7" rotation="0 90 0"></a-box><a-box src="#mur" repeat="2 1.5" depth=".25" width="3.998" height="3" position="7.5 4.75 -13" rotation="0 90 0"></a-box>
-                <a-box src="#mur" repeat="5 1.5" depth=".25" width="9.998" height="3" position="-7.5 4.75 -10" rotation="0 90 0"></a-box>
-
-                <a-box src="#mur" repeat="2.25 1.5" depth=".25" width="4.48" height="3" position="0 4.75 -5.125"></a-box>
-                <a-box src="#mur" repeat="2.25 1.5" depth=".25" width="4.48" height="3" position="7.5 4.75 -5.125"></a-box>
-                <a-box src="#mur" repeat="2.25 1.5" depth=".25" width="4.48" height="3" position="-7.5 4.75 -5.125"></a-box>
-                <a-box src="#mur" repeat="1.125 1.5" depth=".25" width="2.248" height="3" position="13.875 4.75 -5.125"></a-box>
-                <a-box src="#mur" repeat="1.125 1.5" depth=".25" width="2.248" height="3" position="-13.875 4.75 -5.125"></a-box>
-
-                <!-- Murs principaux -->
-                    <!-- Nord -->
-                <a-box src="#mur" repeat="15 3" depth=".25" width="29.998" height="6" position="0 6.25 -14.875"></a-box>
-                    <!-- Est -->
-                <a-box src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="14.875 4.75 -8.75" rotation="0 -90 0"></a-box>
-                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="14.875 4.75 3.75" rotation="0 -90 0"></a-box>
-                <a-box src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
-
-                <a-box src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="14.875 7.75 -5" rotation="0 -90 0"></a-box>
-                    <!-- Ouest -->
-                <a-box src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="-14.875 4.75 -8.75" rotation="0 90 0"></a-box>
-                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-14.875 4.75 3.75" rotation="0 90 0"></a-box>
-                <a-box src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
-
-                <a-box src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="-14.875 7.75 -5" rotation="0 90 0"></a-box>
-                    <!-- Sud (Terrasse) -->
-                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-3.25 4.75 4.875"></a-box>
-                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-13.75 4.75 4.875"></a-box>
-                <a-box src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
-
-                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="3.25 4.75 4.875"></a-box>
-                <a-box src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="13.75 4.75 4.875"></a-box>
-                <a-box src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
-
-                <a-box src="#mur" repeat="15 1.5" depth=".25" width="29.998" height="3" position="0 7.75 4.875"></a-box>
-                    <!-- Entrée -->
-                <a-box src="#vitre" repeat="4 3" opacity="0.5" color="lightblue" depth=".05" width="4" height="3" position="0 4.75 4.875"></a-box>
-
-                <!-- Plafond -->
-                <a-box src="#mur" repeat="15 12.5" depth=".25" width="29.998" height="25" position="0 9.375 -2.5" rotation="90 0 0"></a-box>
 
                 <!-- Mobilier & objets -->
                 <a-entity position="0 3.25 0"><!-- Hall -->
+
                     <!-- Escaliers -->
                     <a-obj-model src="#stairs-obj" color="lightgrey" metalness="1" position="7.5 1.6 -1.3" scale=".7 .7 .7"></a-obj-model>
                     <a-obj-model src="#stairs-obj" color="lightgrey" metalness="1" position="-7.5 1.6 -1.3" scale=".7 .7 .7"></a-obj-model>
 
                     <!-- Cloisons amovibles -->
-                    <a-plane color="white" width="4.5" height="2" position="0 1 0">
+                    <a-box static-body color="white" depth=".1" width="4.5" height="2" position="0 1 0">
                         <a-sphere radius=".1" color="white" position="-2.25 -1 0"></a-sphere>
                         <a-sphere radius=".1" color="white" position="2.25 -1 0"></a-sphere>
-                    </a-plane>
-                    <a-plane color="white"  width="4.5" height="2" position="7.5 1 2">
+                    </a-box>
+                    <a-box static-body color="white" depth=".1"  width="4.5" height="2" position="7.5 1 2">
                         <a-sphere radius=".1" color="white" position="-2.25 -1 0"></a-sphere>
                         <a-sphere radius=".1" color="white" position="2.25 -1 0"></a-sphere>
-                    </a-plane>
-                    <a-plane color="white"  width="3" height="2" position="-7.5 1 2" rotation="0 90 0">
+                    </a-box>
+                    <a-box static-body color="white" depth=".1"  width="3" height="2" position="-7.5 1 2" rotation="0 90 0">
                         <a-sphere radius=".1" color="white" position="-1.5 -1 0"></a-sphere>
                         <a-sphere radius=".1" color="white" position="1.5 -1 0"></a-sphere>
-                    </a-plane>
+                    </a-box>
 
                     <!-- 4 pieces du fond (gauche-droite) -->
                     <a-entity position="-11.25 0 -10"><!-- Piece 1 (lecture) -->
+
                     </a-entity>
+
                     <a-entity position="-3.75 0 -10"><!-- Piece 2 (projection) -->
                         <!-- Fait tout planter --><!-- <a-video src="#ys-movie"  width="4" height="2.25" position="0 1.5 -4.74"></a-video> -->
                     </a-entity>
+
                     <a-entity position="3.75 0 -10"><!-- Piece 3 (tableaux) -->
+
                     </a-entity>
+
                     <a-entity position="11.25 0 -10"><!-- Piece 4 (tableaux) -->
+
                     </a-entity>
+
                 </a-entity>
             </a-entity>
         </a-scene>
 
         <script>
             (function() {
-                document.addEventListener('raycaster-intersected', function(e) {
-                    console.log('Collision !');
+                // Détection pièce
+
+                // A-Frame rolling uniquement
+                // document.addEventListener('raycaster-intersected', function(e) {
+                //     console.log('Collision !');
+                // });
+
+                // A-Frame extras uniquement
+                var player = document.querySelector('a-camera');
+                player.addEventListener('collide', function (evt) {
+                    var id = evt.detail.body.el.id;
+                    var className = evt.detail.body.el.className;
+                    if (className == 'roomDetect') {
+                        console.log('Player is in room ' + id);
+                        console.log(className);
+                    }
                 });
             })();
         </script>
