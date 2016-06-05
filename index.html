@@ -14,22 +14,22 @@
         <a-scene physics stats>
             <a-assets>
                 <!-- Textures prod (lent) -->
-                <img id="skybox" src="assets/images/sky.jpg">
-                <!--<img id="terrasse" src="assets/images/textures/terrasse.jpg">
+                <!-- <img id="skybox" src="assets/images/sky.jpg"> -->
+                <img id="terrasse" src="assets/images/textures/terrasse-corrected.jpg">
                 <img id="parquet" src="assets/images/textures/parquet.jpg">
-                <img id="mur" src="assets/images/textures/mur2.jpg">
+                <img id="mur" src="assets/images/textures/mur2-corrected.jpg">
                 <img id="vitre" src="assets/images/textures/verre.png">
                 <img id="pillier" src="assets/images/textures/pillier.jpg">
-                <a-mixin id="pillier" material="src: #pillier; repeat: 2 3;">-->
+                <a-mixin id="pillier" material="src: #pillier; repeat: 2 3;">
 
                 <!-- Textures dev (rapide) -->
                 <img id="skybox" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOs////PwAIAAN+P+P0CgAAAABJRU5ErkJggg==">
-                <img id="terrasse" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcksLwHwAFBQIZtcb7ngAAAABJRU5ErkJggg==">
-                <img id="parquet" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8cILhPwAHIQK5QliE3QAAAABJRU5ErkJggg==">
-                <img id="mur" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM88x8AAp0BzdNtlUkAAAAASUVORK5CYII=">
-                <img id="vitre" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOs////PwAIAAN+P+P0CgAAAABJRU5ErkJggg==">
-                <img id="pillier" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcksLwHwAFBQIZtcb7ngAAAABJRU5ErkJggg==">
-                <a-mixin id="pillier" material="color: orange;">
+                <!-- <img id="terrasse" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcksLwHwAFBQIZtcb7ngAAAABJRU5ErkJggg=="> -->
+                <!-- <img id="parquet" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8cILhPwAHIQK5QliE3QAAAABJRU5ErkJggg=="> -->
+                <!-- <img id="mur" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM88x8AAp0BzdNtlUkAAAAASUVORK5CYII="> -->
+                <!-- <img id="vitre" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOs////PwAIAAN+P+P0CgAAAABJRU5ErkJggg=="> -->
+                <!-- <img id="pillier" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcksLwHwAFBQIZtcb7ngAAAABJRU5ErkJggg=="> -->
+                <!-- <a-mixin id="pillier" material="color: orange;"> -->
 
                 <!-- Modèles -->
                 <a-asset-item id="stairs-obj" src="assets/models/stairs/stairs.obj">
@@ -70,6 +70,9 @@
                 <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5;" position="0 5 10">
                         <!-- Détection pièce (A-frame stable seulement) -->
                         <!-- <a-entity raycaster="objects: .collidable; far: 4; interval: 1000" rotation="-90 0 0" raycaster-helper material="color: red"></a-entity>-->
+
+                        <!-- Lampe -->
+                        <a-sphere radius=".2" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0.8 -0.5 -1.5"></a-sphere>
                 </a-camera>
 
 
@@ -164,15 +167,12 @@
 
 
                 <!-- Repère -->
-                <a-entity position="0 3.25 0">
+                <a-entity position="0 3.25 10">
                     <a-sphere color="grey" radius=".2" ></a-sphere>
                     <!-- X --><a-cylinder height="2" color="red"   radius=".05" position="1 0 0" rotation="0 0 -90"></a-cylinder>
                     <!-- Y --><a-cylinder height="2" color="green"  radius=".05" position="0 1 0"></a-cylinder>
                     <!-- Z --><a-cylinder height="2" color="blue" radius=".05" position="0 0 1" rotation="90 0 0"></a-cylinder>
                 </a-entity>
-
-                <!-- Lampe -->
-                <a-sphere dynamic-body radius=".4" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
 
 
                 <!-- Mobilier & objets -->
@@ -183,15 +183,15 @@
                     <a-obj-model src="#stairs-obj" color="lightgrey" metalness="1" position="-7.5 1.6 -1.3" scale=".7 .7 .7"></a-obj-model>
 
                     <!-- Cloisons amovibles -->
-                    <a-box static-body color="white" depth=".1" width="4.5" height="2" position="0 1 0">
+                    <a-box static-body color="white" depth=".01" width="4.5" height="2" position="0 1 0">
                         <a-sphere radius=".1" color="white" position="-2.25 -1 0"></a-sphere>
                         <a-sphere radius=".1" color="white" position="2.25 -1 0"></a-sphere>
                     </a-box>
-                    <a-box static-body color="white" depth=".1"  width="4.5" height="2" position="7.5 1 2">
+                    <a-box static-body color="white" depth=".01"  width="4.5" height="2" position="7.5 1 2">
                         <a-sphere radius=".1" color="white" position="-2.25 -1 0"></a-sphere>
                         <a-sphere radius=".1" color="white" position="2.25 -1 0"></a-sphere>
                     </a-box>
-                    <a-box static-body color="white" depth=".1"  width="3" height="2" position="-7.5 1 2" rotation="0 90 0">
+                    <a-box static-body color="white" depth=".01"  width="3" height="2" position="-7.5 1 2" rotation="0 90 0">
                         <a-sphere radius=".1" color="white" position="-1.5 -1 0"></a-sphere>
                         <a-sphere radius=".1" color="white" position="1.5 -1 0"></a-sphere>
                     </a-box>
