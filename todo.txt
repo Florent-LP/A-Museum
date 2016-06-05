@@ -25,3 +25,8 @@ Dynamique :
 - ambiance sonore selon lieu
 - parcours via objets remarquables (objet actuel -> reliques associées éclairées / objets suivants signalés via changement de couleur)
 - lumières : trigger présence user pièce, spots certains objets, déplacée avec user
+
+En bref :
+- Modèles/textures
+- Rooms animations
+- Cursor animations
