@@ -239,24 +239,6 @@
                     }
                 });
                 
-                /*document.addEventListener('stateadded', function(evt) {
-                    var state = evt.detail.state;
-                    var el = evt.detail.target;
-                    if (state == 'hovered' && el.className == 'hoverAnim') {
-                        
-                        var pos = el.getAttribute('position');
-                        for (var key in pos) {
-                            pos[key] = Math.round(pos[key]*10)/10;
-                        }
-                        
-                        var anim = player.querySelector('#fwdAnim');
-                        anim.setAttribute('to', pos.x+' '+player.getAttribute('position').y+' '+pos.z);
-
-                        //el.removeState('stateadded');
-                        player.emit('fwdEvt');
-                    }
-                });*/
-                
                 var hoverEls = document.querySelectorAll('.hoverAnim');
                 for (var i = 0; i < hoverEls.length; i++) {
                     hoverEls[i].addEventListener('stateadded', function(evt) {
