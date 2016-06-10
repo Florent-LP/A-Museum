@@ -71,7 +71,7 @@
                         <!-- Détection pièce (A-frame stable seulement) -->
                         <!-- <a-entity raycaster="objects: .collidable; far: 4; interval: 1000" rotation="-90 0 0" raycaster-helper material="color: red"></a-entity>-->
                         <a-cursor fuse="true" maxDistance="100" timeout="200"></a-cursor>
-                        <a-animation id="fwdAnim" attribute="position" begin="fwdEvt" to="" easing="linear" dur="5000"></a-animation>
+                        <a-animation id="fwdAnim" attribute="position" begin="fwdEvt" to="0 5 0" easing="linear" dur="2500"></a-animation>
                 </a-camera>
 
 
@@ -118,25 +118,25 @@
                 <!-- Est -->
                 <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="14.875 4.75 -8.75" rotation="0 -90 0"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="14.875 4.75 3.75" rotation="0 -90 0"></a-box>
-                <a-box static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
+                <a-box class="hoverAnim" static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
 
                 <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="14.875 7.75 -5" rotation="0 -90 0"></a-box>
 
                 <!-- Ouest -->
                 <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="-14.875 4.75 -8.75" rotation="0 90 0"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-14.875 4.75 3.75" rotation="0 90 0"></a-box>
-                <a-box static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
+                <a-box class="hoverAnim" static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
 
                 <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="-14.875 7.75 -5" rotation="0 90 0"></a-box>
 
                 <!-- Sud (Terrasse) -->
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-3.25 4.75 4.875"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-13.75 4.75 4.875"></a-box>
-                <a-box static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
+                <a-box class="hoverAnim" static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
 
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="3.25 4.75 4.875"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="13.75 4.75 4.875"></a-box>
-                <a-box static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
+                <a-box class="hoverAnim" static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
 
                 <a-box static-body src="#mur" repeat="15 1.5" depth=".25" width="29.998" height="3" position="0 7.75 4.875"></a-box>
 
@@ -239,21 +239,27 @@
                     }
                 });
                 
-                var hoverEls = document.querySelectorAll('.hoverAnim');
-                for (var i = 0; i < hoverEls.length; i++) {
-                    hoverEls[i].addEventListener('stateadded', function(evt) {
+                var hovEls = document.querySelectorAll('.hoverAnim');
+                for (var i = 0; i < hovEls.length; i++) {
+                    hovEls[i].addEventListener('stateadded', function(evt) {
                         var state = evt.detail.state;
                         var el = evt.detail.target;
+                        
                         if (state == 'hovered') {
+                            var from = player.getAttribute('position');
+                            var to = el.getAttribute('position');
+                            for (var key in to)
+                                to[key] = Math.round(to[key]*10)/10;
 
-                            var pos = el.getAttribute('position');
-                            for (var key in pos) {
-                                pos[key] = Math.round(pos[key]*10)/10;
-                            }
+                            var dx = from.x - to.x;
+                            var dz = from.z - to.z
 
                             var anim = player.querySelector('#fwdAnim');
-                            anim.setAttribute('to', pos.x+' '+player.getAttribute('position').y+' '+pos.z);
+                            anim.setAttribute('from', from.x+' '+from.y+' '+from.z);
+                            anim.setAttribute('to', (to.x + Math.sign(dx))+' '+from.y+' '+(to.z + Math.sign(dz)));
+                            console.log(anim);
 
+                            //player.setAttribute('position', pos.x+' '+from.y+' '+pos.z);
                             //el.removeState('stateadded');
                             player.emit('fwdEvt');
                         }
