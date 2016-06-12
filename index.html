@@ -103,7 +103,7 @@
 
                 <!-- Sol -->
                 <a-box static-body src="#terrasse" repeat="10 10" depth=".5" width="30" height="30" rotation="-90 0 0" position="0 3 0"></a-box>
-                <a-plane static-body src="#parquet" repeat="6 4" width="30" height="20" rotation="-90 0 0" position="0 3.251 -5"></a-plane>
+                <a-plane static-body coll-notif src="#parquet" repeat="6 4" width="30" height="20" rotation="-90 0 0" position="0 3.251 -5"></a-plane>
 
                 <!-- Échelles -->
                 <a-box static-body src="#pillier" repeat="14 1" depth=".8" width="28" height="1" position="0 0 14.7"></a-box>
@@ -231,11 +231,9 @@
                 // A-Frame extras uniquement
                 var player = document.querySelector('a-camera');
                 player.addEventListener('collide', function (evt) {
-                    var id = evt.detail.body.el.id;
-                    var className = evt.detail.body.el.className;
-                    if (className == 'roomDetect') {
-                        console.log('Player is in room ' + id);
-                        console.log(className);
+                    var el = evt.detail.body.el;
+                    if (el.hasAttribute('coll-notif')) {
+                        console.log('Player is in room ' + el.id);
                     }
                 });
             })();
