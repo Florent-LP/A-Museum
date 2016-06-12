@@ -4,11 +4,8 @@
         <meta charset="utf-8">
         <title>Ys Museum</title>
 
-        <script src="dist/stable/aframe.min.js"></script><!-- Version stable -->
-        <script src="dist/extras/aframe-extras.min.js"></script><!-- A-frame stable seulement -->
-
-        <!--<script src="dist/rolling/aframe.min.js"></script>--><!-- Version récente -->
-        <!--<script src="scripts/raycaster-helper.js"></script>--><!-- A-frame rolling seulement -->
+        <script src="dist/stable/aframe.min.js"></script>
+        <script src="dist/extras/aframe-extras.min.js"></script>
     </head>
     <body>
         <a-scene physics stats>
@@ -68,11 +65,11 @@
 
             <a-entity position="0 -3.25 -60"> <!-- Note : J'enlève 0.002 aux largeurs pour éviter le scintillement lié à la superposition de certains plans. -->
                 <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5" position="0 5.14 10">
-                        <!-- Détection pièce (A-frame stable seulement) -->
-                        <!-- <a-entity raycaster="objects: .collidable; far: 4; interval: 1000" rotation="-90 0 0" raycaster-helper material="color: red"></a-entity>-->
                         <a-sphere radius=".2" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0.8 -0.5 -1.5"></a-sphere>
-                        <a-cursor fuse="true" maxDistance="100" timeout="200"></a-cursor>
-                        <a-animation id="fwdAnim" attribute="position" begin="fwdEvt" to="0 5 0" easing="linear" dur="2500"></a-animation>
+                        <a-cursor fuse="true" max-distance="30" timeout="1500">
+                            <a-animation begin="cursorEvt" easing="ease-in" attribute="scale" fill="forwards" from="1.7 1.7 1.7" to="1 1 1" dur="1500"></a-animation>
+                        </a-cursor>
+                        <a-animation id="fwdAnim" begin="fwdEvt" easing="linear" attribute="position" fill="forwards" to="0 5.14 0" dur="2500"></a-animation>
                 </a-camera>
 
 
@@ -103,7 +100,14 @@
 
                 <!-- Sol -->
                 <a-box static-body src="#terrasse" repeat="10 10" depth=".5" width="30" height="30" rotation="-90 0 0" position="0 3 0"></a-box>
-                <a-plane static-body coll-notif src="#parquet" repeat="6 4" width="30" height="20" rotation="-90 0 0" position="0 3.251 -5"></a-plane>
+                <a-plane static-body src="#parquet" repeat="6 4" width="30" height="20" rotation="-90 0 0" position="0 3.251 -5"></a-plane>
+
+                <!-- Colliders (room detection) -->
+                <a-plane id="hall" coll-trigger static-body opacity="0" width="30" height="10" rotation="-90 0 0" position="0 3.252 0"></a-plane>
+                <a-plane id="room1" coll-trigger static-body opacity="0" width="7.5" height="10" rotation="-90 0 0" position="-11.25 3.253 -10"></a-plane>
+                <a-plane id="room2" coll-trigger static-body opacity="0" width="7.5" height="10" rotation="-90 0 0" position="-3.75 3.253 -10"></a-plane>
+                <a-plane id="room3" coll-trigger static-body opacity="0" width="7.5" height="10" rotation="-90 0 0" position="3.75 3.253 -10"></a-plane>
+                <a-plane id="room4" coll-trigger static-body opacity="0" width="7.5" height="10" rotation="-90 0 0" position="11.25 3.254 -10"></a-plane>
 
                 <!-- Échelles -->
                 <a-box static-body src="#pillier" repeat="14 1" depth=".8" width="28" height="1" position="0 0 14.7"></a-box>
@@ -121,25 +125,25 @@
                 <!-- Est -->
                 <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="14.875 4.75 -8.75" rotation="0 -90 0"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="14.875 4.75 3.75" rotation="0 -90 0"></a-box>
-                <a-box class="hoverAnim" static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
+                <a-box gaze-anim static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
 
                 <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="14.875 7.75 -5" rotation="0 -90 0"></a-box>
 
                 <!-- Ouest -->
                 <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="-14.875 4.75 -8.75" rotation="0 90 0"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-14.875 4.75 3.75" rotation="0 90 0"></a-box>
-                <a-box class="hoverAnim" static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
+                <a-box gaze-anim static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
 
                 <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="-14.875 7.75 -5" rotation="0 90 0"></a-box>
 
                 <!-- Sud (Terrasse) -->
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-3.25 4.75 4.875"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-13.75 4.75 4.875"></a-box>
-                <a-box class="hoverAnim" static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
+                <a-box gaze-anim static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
 
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="3.25 4.75 4.875"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="13.75 4.75 4.875"></a-box>
-                <a-box class="hoverAnim" static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
+                <a-box gaze-anim static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
 
                 <a-box static-body src="#mur" repeat="15 1.5" depth=".25" width="29.998" height="3" position="0 7.75 4.875"></a-box>
 
@@ -177,7 +181,7 @@
                 </a-entity>
 
                 <!-- Lampe -->
-                <a-sphere class="hoverAnim" dynamic-body radius=".4" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
+                <a-sphere gaze-anim dynamic-body radius=".4" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
 
                 <!-- Mobilier & objets -->
                 <a-entity position="0 3.25 0"><!-- Hall -->
@@ -223,46 +227,35 @@
 
         <script>
             (function() {
-                // Détection pièce
-
-                // A-Frame rolling uniquement
-                // document.addEventListener('raycaster-intersected', function(e) {
-                //     console.log('Collision !');
-                // });
-
-                // A-Frame extras uniquement
                 var player = document.querySelector('a-camera');
-                player.addEventListener('collide', function (evt) {
+                var cursor = player.querySelector('a-cursor');
+                var fwdAnim = player.querySelector('#fwdAnim');
+
+                // Détection pièce
+                player.addEventListener('collide', function(evt) {
                     var el = evt.detail.body.el;
-                    if (el.hasAttribute('coll-notif')) {
+                    if (el.hasAttribute('coll-trigger'))
                         console.log('Player is in room ' + el.id);
-                    }
                 });
 
-                var hovEls = document.querySelectorAll('.hoverAnim');
+                // Animations gaze
+                var hovEls = document.querySelectorAll('[gaze-anim]');
                 for (var i = 0; i < hovEls.length; i++) {
+                    hovEls[i].addEventListener('click', function(evt) {
+                        var _from = player.getAttribute('position');
+                        var to = this.getAttribute('position');
+
+                        var dx = _from.x - to.x;
+                        var dz = _from.z - to.z
+
+                        fwdAnim.setAttribute('from', _from.x+' '+_from.y+' '+_from.z);
+                        fwdAnim.setAttribute('to', (to.x + Math.sign(dx))+' '+_from.y+' '+(to.z + Math.sign(dz)));
+
+                        player.emit('fwdEvt');
+                    });
                     hovEls[i].addEventListener('stateadded', function(evt) {
-                        var state = evt.detail.state;
-                        var el = evt.detail.target;
-
-                        if (state == 'hovered') {
-                            var from = player.getAttribute('position');
-                            var to = el.getAttribute('position');
-                            for (var key in to)
-                                to[key] = Math.round(to[key]*10)/10;
-
-                            var dx = from.x - to.x;
-                            var dz = from.z - to.z
-
-                            var anim = player.querySelector('#fwdAnim');
-                            anim.setAttribute('from', from.x+' '+from.y+' '+from.z);
-                            anim.setAttribute('to', (to.x + Math.sign(dx))+' '+from.y+' '+(to.z + Math.sign(dz)));
-                            console.log(anim);
-
-                            //player.setAttribute('position', pos.x+' '+from.y+' '+pos.z);
-                            //el.removeState('stateadded');
-                            player.emit('fwdEvt');
-                        }
+                        if (evt.detail.state == 'hovered')
+                            cursor.emit('cursorEvt');
                     });
                 }
             })();
