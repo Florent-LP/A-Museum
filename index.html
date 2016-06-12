@@ -72,7 +72,6 @@
                         <!-- <a-entity raycaster="objects: .collidable; far: 4; interval: 1000" rotation="-90 0 0" raycaster-helper material="color: red"></a-entity>-->
                         <a-sphere radius=".2" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0.8 -0.5 -1.5"></a-sphere>
                         <a-cursor fuse="true" maxDistance="100" timeout="200"></a-cursor>
-                        <a-animation id="fwdAnim" attribute="position" begin="fwdEvt" to="0 5 0" easing="linear" dur="2500"></a-animation>
                 </a-camera>
 
 
@@ -121,25 +120,25 @@
                 <!-- Est -->
                 <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="14.875 4.75 -8.75" rotation="0 -90 0"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="14.875 4.75 3.75" rotation="0 -90 0"></a-box>
-                <a-box class="hoverAnim" static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
+                <a-box hover-anim static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
 
                 <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="14.875 7.75 -5" rotation="0 -90 0"></a-box>
 
                 <!-- Ouest -->
                 <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="-14.875 4.75 -8.75" rotation="0 90 0"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-14.875 4.75 3.75" rotation="0 90 0"></a-box>
-                <a-box class="hoverAnim" static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
+                <a-box hover-anim static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
 
                 <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="-14.875 7.75 -5" rotation="0 90 0"></a-box>
 
                 <!-- Sud (Terrasse) -->
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-3.25 4.75 4.875"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-13.75 4.75 4.875"></a-box>
-                <a-box class="hoverAnim" static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
+                <a-box hover-anim static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
 
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="3.25 4.75 4.875"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="13.75 4.75 4.875"></a-box>
-                <a-box class="hoverAnim" static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
+                <a-box hover-anim static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
 
                 <a-box static-body src="#mur" repeat="15 1.5" depth=".25" width="29.998" height="3" position="0 7.75 4.875"></a-box>
 
@@ -177,7 +176,7 @@
                 </a-entity>
 
                 <!-- Lampe -->
-                <a-sphere class="hoverAnim" dynamic-body radius=".4" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
+                <a-sphere hover-anim dynamic-body radius=".4" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
 
                 <!-- Mobilier & objets -->
                 <a-entity position="0 3.25 0"><!-- Hall -->
@@ -233,36 +232,32 @@
                 // A-Frame extras uniquement
                 var player = document.querySelector('a-camera');
                 player.addEventListener('collide', function (evt) {
-                    var el = evt.detail.body.el;
-                    if (el.hasAttribute('coll-notif')) {
-                        console.log('Player is in room ' + el.id);
+                    if (this.hasAttribute('coll-notif')) {
+                        console.log('Player is in room ' + this);
                     }
                 });
 
-                var hovEls = document.querySelectorAll('.hoverAnim');
+                var hovEls = document.querySelectorAll('[hover-anim]');
                 for (var i = 0; i < hovEls.length; i++) {
+                    hovEls[i].setAttribute('hover-anim', 'fwdEvt'+i);
+
+                    var elPos = hovEls[i].getAttribute('position');
+                    var playerPos = player.getAttribute('position');
+
+                    var anim = document.createElement('a-animation');
+                    anim.setAttribute('attribute', 'position');
+                    anim.setAttribute('begin', 'fwdEvt'+i);
+                    anim.setAttribute('to', elPos.x+' '+playerPos.y+' '+elPos.z);
+                    anim.setAttribute('easing', 'linear');
+                    anim.setAttribute('dur', '2500');
+                    player.appendChild(anim);
+
                     hovEls[i].addEventListener('stateadded', function(evt) {
                         var state = evt.detail.state;
-                        var el = evt.detail.target;
+                        var evtName = this.getAttribute('hover-anim');
 
-                        if (state == 'hovered') {
-                            var from = player.getAttribute('position');
-                            var to = el.getAttribute('position');
-                            for (var key in to)
-                                to[key] = Math.round(to[key]*10)/10;
-
-                            var dx = from.x - to.x;
-                            var dz = from.z - to.z
-
-                            var anim = player.querySelector('#fwdAnim');
-                            anim.setAttribute('from', from.x+' '+from.y+' '+from.z);
-                            anim.setAttribute('to', (to.x + Math.sign(dx))+' '+from.y+' '+(to.z + Math.sign(dz)));
-                            console.log(anim);
-
-                            //player.setAttribute('position', pos.x+' '+from.y+' '+pos.z);
-                            //el.removeState('stateadded');
-                            player.emit('fwdEvt');
-                        }
+                        if (state == 'hovered')
+                            player.emit(evtName);
                     });
                 }
             })();
