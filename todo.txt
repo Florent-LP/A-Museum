@@ -6,25 +6,25 @@ Statique (à finir vite) :
 
 + film (1 min)
 - déclenché sur présence dans pièce
-- lumières pièces
++ lumières pièces
 + cloisons amovibles
 - flèches (guide)
 - panneaux (écrits)
 
 - tableaux, cartes
-- reliques, bouquins
-- mobilier
++ reliques, bouquins
++ mobilier
 
-- joli balcon
++ joli balcon
 + plage/mer réalistes
 
 Dynamique :
--+ point & click -> déplacement vers objet + arrêt à 0.5m (possibilité interruption et cam != direction) http://vrspace.jmvisualcreativity.es/
++ point & click -> déplacement vers objet + arrêt à 0.5m (possibilité interruption et cam != direction) http://vrspace.jmvisualcreativity.es/
 - fixe tableau -> fichier son (arrêt si plus fixé)
 - fixe relique -> éclairage
 - ambiance sonore selon lieu
-- parcours via objets remarquables (objet actuel -> reliques associées éclairées / objets suivants signalés via changement de couleur)
-- lumi�res : trigger présence user pièce, spots certains objets, déplacée avec user
++ parcours via objets remarquables (objet actuel -> reliques associées éclairées / objets suivants signalés via changement de couleur)
++ lumières : trigger présence user pièce, spots certains objets, déplacée avec user
 
 En bref :
 - Modèles/textures
