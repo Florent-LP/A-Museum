@@ -50,6 +50,31 @@
 
                 <a-asset-item id="penguin-obj" src="assets/models/penguin/penguin.obj"></a-asset-item>
                 <a-asset-item id="penguin-mtl" src="assets/models/penguin/penguin.mtl"></a-asset-item>
+                
+                <a-asset-item id="door-obj" src="assets/models/accordionFoldDoors.obj"></a-asset-item>
+                <a-asset-item id="door-mtl" src="assets/models/accordionFoldDoors.mtl"></a-asset-item>
+
+                <!-- Tableaux -->
+                <a-asset-item id="t1-obj" src="assets/models/tableaux/AntelopeCanyonFrame.obj"></a-asset-item>
+                <a-asset-item id="t2-obj" src="assets/models/tableaux/ficus.obj"></a-asset-item>
+                <a-asset-item id="t3-obj" src="assets/models/tableaux/frame_horizontal.obj"></a-asset-item>
+                <a-asset-item id="t4-obj" src="assets/models/tableaux/frame_vertical.obj"></a-asset-item>
+                <a-asset-item id="t5-obj" src="assets/models/tableaux/NiagaraFallsFrame.obj"></a-asset-item>
+                <a-asset-item id="t6-obj" src="assets/models/tableaux/EtretatFrame.obj"></a-asset-item>
+                <a-asset-item id="t7-obj" src="assets/models/tableaux/frame3HorizontalNorwayPhotos.obj"></a-asset-item>
+                <a-asset-item id="t8-obj" src="assets/models/tableaux/frame_square.obj"></a-asset-item>
+                <a-asset-item id="t9-obj" src="assets/models/tableaux/HaiVanPassFrame.obj"></a-asset-item>
+                <a-asset-item id="t10-obj" src="assets/models/tableaux/YosemiteFrame.obj"></a-asset-item>
+                <a-asset-item id="t1-mtl" src="assets/models/tableaux/AntelopeCanyonFrame.mtl"></a-asset-item>
+                <a-asset-item id="t2-mtl" src="assets/models/tableaux/ficus.mtl"></a-asset-item>
+                <a-asset-item id="t3-mtl" src="assets/models/tableaux/frame_horizontal.mtl"></a-asset-item>
+                <a-asset-item id="t4-mtl" src="assets/models/tableaux/frame_vertical.mtl"></a-asset-item>
+                <a-asset-item id="t5-mtl" src="assets/models/tableaux/NiagaraFallsFrame.mtl"></a-asset-item>
+                <a-asset-item id="t6-mtl" src="assets/models/tableaux/EtretatFrame.mtl"></a-asset-item>
+                <a-asset-item id="t7-mtl" src="assets/models/tableaux/frame3HorizontalNorwayPhotos.mtl"></a-asset-item>
+                <a-asset-item id="t8-mtl" src="assets/models/tableaux/frame_square.mtl"></a-asset-item>
+                <a-asset-item id="t9-mtl" src="assets/models/tableaux/HaiVanPassFrame.mtl"></a-asset-item>
+                <a-asset-item id="t10-mtl" src="assets/models/tableaux/YosemiteFrame.mtl"></a-asset-item>
 
                 <!-- Etc -->
                 <!-- <video id="ys-movie" autoplay loop="true" src="videos/ys-movie-short.webm"> -->
@@ -83,7 +108,7 @@
 
             <a-entity position="0 -3.25 -60"> <!-- Note : J'enlève 0.002 aux largeurs pour éviter le scintillement lié à la superposition de certains plans. -->
                 <!-- Note (physics) : Le joueur n'est bloqué par les static-body que s'ils sont dans la même entity que la camera. -->
-<!--                 <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5" position="-11.25 5.14 -10"> -->
+                <!-- <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5" position="-11.25 5.14 -10"> -->
                 <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5" position="0 5.14 10">
                         <a-sphere radius=".2" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0.8 -0.5 -1.5"></a-sphere> <!--Lampe -->
                         <a-plane width=".05" height="1" rotation="0 0 90" position="0 -1 -2"></a-plane> <!-- Règle (mesure) -->
@@ -96,8 +121,18 @@
 
 
                 <!-- Mer -->
-                <a-plane static-body color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -2.5 0"></a-plane>
-                <!-- <a-ocean static-body color="#92E2E2" width="500" depth="500" density="150" speed="2"></a-ocean> -->
+                <!-- <a-plane static-body color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -2.5 0"></a-plane> -->
+                <a-ocean color="#92E2E2" width="50" depth="50" density="10" speed="2"></a-ocean>
+                
+                <a-plane static-body color="#000201" opacity=".8" width="250" height="50" rotation="-90 0 0" position="150 -0.5 0"></a-plane>
+                <a-plane static-body color="#000201" opacity=".8" width="250" height="50" rotation="-90 0 0" position="-150 -0.5 0"></a-plane>
+                <a-plane static-body color="#000201" opacity=".8" width="250" height="250" rotation="-90 0 0" position="-150 -0.5 150"></a-plane>
+                <a-plane static-body color="#000201" opacity=".8" width="50" height="250" rotation="-90 0 0" position="0 -0.5 150"></a-plane>
+                <a-plane static-body color="#000201" opacity=".8" width="250" height="250" rotation="-90 0 0" position="150 -0.5 150"></a-plane>
+                <a-plane static-body color="#000201" opacity=".8" width="250" height="250" rotation="-90 0 0" position="-150 -0.5 -150"></a-plane>
+                <a-plane static-body color="#000201" opacity=".8" width="50" height="250" rotation="-90 0 0" position="0 -0.5 -150"></a-plane>
+                <a-plane static-body color="#000201" opacity=".8" width="250" height="250" rotation="-90 0 0" position="150 -0.5 -150"></a-plane>
+                
                 <a-plane static-body color="#7FFFFF" width="800" height="800" rotation="-90 0 0" position="0 -3 0"></a-plane>
 
 
@@ -170,7 +205,8 @@
                 <a-box static-body src="#mur" repeat="15 1.5" depth=".25" width="29.998" height="3" position="0 7.75 4.875"></a-box>
 
                 <!-- Entrée -->
-                <a-box src="#vitre" repeat="4 3" opacity="0.5" color="lightblue" depth=".05" width="4" height="3" position="0 4.75 4.875"></a-box>
+                <!-- <a-box src="#vitre" repeat="4 3" opacity="0.5" color="lightblue" depth=".05" width="4" height="3" position="0 4.75 4.875"></a-box> -->
+                <a-obj-model src="#door-obj" mtl="#door-mtl" scale=".9 .9 .9" position="-0.6 4.65 5"></a-obj-model>
 
                 <!-- Plafond -->
                 <a-box static-body src="#mur" repeat="15 12.5" depth=".25" width="29.998" height="25" position="0 9.375 -2.5" rotation="90 0 0"></a-box>
@@ -203,8 +239,8 @@
                     <!-- Z --><a-cylinder height="2" color="blue" radius=".05" position="0 0 1" rotation="90 0 0"></a-cylinder>
                 </a-entity>
 
-                <!-- Lampe -->
-                <a-sphere gaze-anim dynamic-body radius=".4" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
+                <!-- Ballon -->
+                <a-sphere gaze-anim dynamic-body radius=".3" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="2 6 2"></a-sphere>
 
                 <!-- Stair collider -->
                 <a-plane static-body opacity="0" width="1" height="5.5" rotation="-51 0 0" position="13.6 5 -2.9"></a-plane>
@@ -343,11 +379,13 @@
                     <a-entity position="3.75 0 -10"><!-- Piece 3 (tableaux) -->
                         <a-sphere class="lightRoom" id="lRoom3" radius=".2" shader="flat" color="grey" position="0 3 0"></a-sphere> <!--Lampe -->
 
+                        <a-obj-model src="#t1-obj" mtl="#t1-mtl" scale=".04 .04 .04" position="0 .5 -4.70" rotation="0 0 -90"></a-obj-model>
                     </a-entity>
 
                     <a-entity position="11.25 0 -10"><!-- Piece 4 (tableaux) -->
                         <a-sphere class="lightRoom" id="lRoom4" radius=".2" shader="flat" color="grey" position="0 3 0"></a-sphere> <!--Lampe -->
 
+                        <a-obj-model src="#t3-obj" mtl="#t3-mtl" scale=".02 .02 .02" position="0 .3 -4.70"></a-obj-model>
                     </a-entity>
 
                 </a-entity>
