@@ -29,9 +29,24 @@
                 <!-- <a-mixin id="pillier" material="color: orange;"> -->
 
                 <!-- Modèles -->
-                <a-asset-item id="stairs-obj" src="assets/models/stairs/stairs.obj">
-                <a-asset-item id="ladder-obj" src="assets/models/stairs/ladder.obj">
-                <a-asset-item id="ladder-mtl" src="assets/models/stairs/ladder.mtl">
+                <a-asset-item id="stairs-obj" src="assets/models/stairs/stairs.obj"></a-asset-item>
+                <a-asset-item id="stairs-mtl" src="assets/models/stairs/stairs.mtl"></a-asset-item>
+                <a-asset-item id="ladder-obj" src="assets/models/stairs/ladder.obj"></a-asset-item>
+                <a-asset-item id="ladder-mtl" src="assets/models/stairs/ladder.mtl"></a-asset-item>
+
+                <a-asset-item id="wood-table-obj" src="assets/models/wood_table.obj"></a-asset-item>
+                <a-asset-item id="marble-table-obj" src="assets/models/marble_table.obj"></a-asset-item>
+                <a-asset-item id="marble-table-mtl" src="assets/models/marble_table.mtl"></a-asset-item>
+
+                <a-asset-item id="upper-cabinet-obj" src="assets/models/upper_cabinet.obj"></a-asset-item>
+                <a-asset-item id="upper-cabinet-mtl" src="assets/models/upper_cabinet.mtl"></a-asset-item>
+
+                <a-asset-item id="bibliotheque-obj" src="assets/models/bibliotheque.obj"></a-asset-item>
+                <a-asset-item id="smallbookshelves-obj" src="assets/models/smallbookshelves.obj"></a-asset-item>
+                <a-asset-item id="smallbookshelves-mtl" src="assets/models/smallbookshelves.mtl"></a-asset-item>
+
+                <a-asset-item id="sofa-obj" src="assets/models/sofa.obj"></a-asset-item>
+                <a-asset-item id="sofa-mtl" src="assets/models/sofa.mtl"></a-asset-item>
 
                 <!-- Etc -->
                 <!-- <video id="ys-movie" autoplay loop="true" src="videos/ys-movie-short.webm"> -->
@@ -64,8 +79,12 @@
 
 
             <a-entity position="0 -3.25 -60"> <!-- Note : J'enlève 0.002 aux largeurs pour éviter le scintillement lié à la superposition de certains plans. -->
-                <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5" position="0 5.14 10">
-                        <a-sphere radius=".2" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0.8 -0.5 -1.5"></a-sphere>
+                <!-- Note (physics) : Le joueur n'est bloqué par les static-body que s'ils sont dans la même entity que la camera. -->
+                <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5" position="-11.25 5.14 -10">
+                <!-- <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5" position="0 5.14 10"> -->
+                        <a-sphere radius=".2" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0.8 -0.5 -1.5"></a-sphere> <!--Lampe -->
+                        <a-plane width=".05" height="1" rotation="0 0 90" position="0 0 -2"></a-plane> <!-- Règle (mesure) -->
+
                         <a-cursor fuse="true" max-distance="30" timeout="1500">
                             <a-animation begin="cursorEvt" easing="ease-in" attribute="scale" fill="forwards" from="1.7 1.7 1.7" to="1 1 1" dur="1500"></a-animation>
                         </a-cursor>
@@ -74,8 +93,8 @@
 
 
                 <!-- Mer -->
-                <!-- <a-plane static-body color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -2.5 0"></a-plane> -->
-                <a-ocean static-body color="#92E2E2" width="500" depth="500" density="150" speed="2"></a-ocean>
+                <a-plane static-body color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -2.5 0"></a-plane>
+                <!-- <a-ocean static-body color="#92E2E2" width="500" depth="500" density="150" speed="2"></a-ocean> -->
                 <a-plane static-body color="#7FFFFF" width="800" height="800" rotation="-90 0 0" position="0 -3 0"></a-plane>
 
 
@@ -112,9 +131,9 @@
                 <!-- Échelles -->
                 <a-box static-body src="#pillier" repeat="14 1" depth=".8" width="28" height="1" position="0 0 14.7"></a-box>
 
-                <a-obj-model src="#ladder-obj" position="9 0 15" scale=".02 .02 .02"></a-obj-model>
-                <a-obj-model src="#ladder-obj" position="0 0 15" scale=".02 .02 .02"></a-obj-model>
-                <a-obj-model src="#ladder-obj" position="-9 0 15" scale=".02 .02 .02"></a-obj-model>
+                <a-obj-model src="#ladder-obj" mtl="#ladder-mtl" position="9 0 15" scale=".02 .02 .02"></a-obj-model>
+                <a-obj-model src="#ladder-obj" mtl="#ladder-mtl" position="0 0 15" scale=".02 .02 .02"></a-obj-model>
+                <a-obj-model src="#ladder-obj" mtl="#ladder-mtl" position="-9 0 15" scale=".02 .02 .02"></a-obj-model>
                 <!-- Plateforme / FIN -->
 
 
@@ -125,25 +144,25 @@
                 <!-- Est -->
                 <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="14.875 4.75 -8.75" rotation="0 -90 0"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="14.875 4.75 3.75" rotation="0 -90 0"></a-box>
-                <a-box gaze-anim static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
+                <a-box static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="14.875 4.75 0" rotation="0 -90 0"></a-box>
 
                 <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="14.875 7.75 -5" rotation="0 -90 0"></a-box>
 
                 <!-- Ouest -->
                 <a-box static-body src="#mur" repeat="6.25 1.5" depth=".25" width="12.498" height="3" position="-14.875 4.75 -8.75" rotation="0 90 0"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-14.875 4.75 3.75" rotation="0 90 0"></a-box>
-                <a-box gaze-anim static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
+                <a-box static-body src="#vitre" repeat="5 3" opacity="0.5" color="lightblue" depth=".05" width="5" height="3"  position="-14.875 4.75 0" rotation="0 90 0"></a-box>
 
                 <a-box static-body src="#mur" repeat="10 1.5" depth=".25" width="19.998" height="3" position="-14.875 7.75 -5" rotation="0 90 0"></a-box>
 
                 <!-- Sud (Terrasse) -->
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-3.25 4.75 4.875"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="-13.75 4.75 4.875"></a-box>
-                <a-box gaze-anim static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
+                <a-box static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="-8.5 4.75 4.875"></a-box>
 
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="3.25 4.75 4.875"></a-box>
                 <a-box static-body src="#mur" repeat="1.25 1.5" depth=".25" width="2.498" height="3" position="13.75 4.75 4.875"></a-box>
-                <a-box gaze-anim static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
+                <a-box static-body src="#vitre" repeat="8 3" opacity="0.5" color="lightblue" depth=".05" width="8" height="3" position="8.5 4.75 4.875"></a-box>
 
                 <a-box static-body src="#mur" repeat="15 1.5" depth=".25" width="29.998" height="3" position="0 7.75 4.875"></a-box>
 
@@ -158,6 +177,7 @@
                 <!-- Murs intérieurs / DÉBUT -->
                 <!-- Mezzanine -->
                 <a-box static-body src="#mur" repeat="15 5" depth=".25" width="29.998" height="9.998" position="0 6.375 -10" rotation="90 0 0"></a-box>
+                <a-plane static-body src="#parquet" repeat="6 2" width="29.998" height="9.998" position="0 6.51 -10" rotation="-90 0 0"></a-plane>
 
                 <!-- Cloisons fixes -->
                 <a-box static-body src="#mur" repeat="5 1.5" depth=".25" width="9.998" height="3" position="0 4.75 -10" rotation="0 90 0"></a-box>
@@ -183,34 +203,83 @@
                 <!-- Lampe -->
                 <a-sphere gaze-anim dynamic-body radius=".4" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0 6 0"></a-sphere>
 
+                <!-- Stair collider -->
+                <a-plane static-body opacity="0" width="1" height="5.5" rotation="-51 0 0" position="13.6 5 -2.9"></a-plane>
+
                 <!-- Mobilier & objets -->
                 <a-entity position="0 3.25 0"><!-- Hall -->
 
                     <!-- Escaliers -->
-                    <a-obj-model src="#stairs-obj" color="lightgrey" metalness="1" position="7.5 1.6 -1.3" scale=".7 .7 .7"></a-obj-model>
-                    <a-obj-model src="#stairs-obj" color="lightgrey" metalness="1" position="-7.5 1.6 -1.3" scale=".7 .7 .7"></a-obj-model>
+                    <a-obj-model src="#stairs-obj" mtl="#stairs-mtl" position="13.6 0 -3.2" scale=".012 .012 .012"></a-obj-model>
+
+                    <!-- Tables -->
+                    <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="-7.5 0 -4.3"></a-obj-model>
+                    <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="0 0 -4.3"></a-obj-model>
+                    <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="7.5 0 -4.3"></a-obj-model>
+
+                    <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="-10 0 4.2"></a-obj-model>
+                    <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="-6 0 4.2"></a-obj-model>
+                    <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="6 0 4.2"></a-obj-model>
+                    <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="10 0 4.2"></a-obj-model>
+
+                    <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="-13.8 0 -4"></a-obj-model>
+                    <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="-13.8 0 -0.1"></a-obj-model>
+                    <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="-13.8 0 3.8"></a-obj-model>
+                    <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="13.8 0 3.8"></a-obj-model>
 
                     <!-- Cloisons amovibles -->
                     <a-box static-body color="white" depth=".01" width="4.5" height="2" position="0 1 0">
                         <a-sphere radius=".1" color="white" position="-2.25 -1 0"></a-sphere>
                         <a-sphere radius=".1" color="white" position="2.25 -1 0"></a-sphere>
                     </a-box>
-                    <a-box static-body color="white" depth=".01"  width="4.5" height="2" position="7.5 1 2">
+                    <a-box static-body color="white" depth=".01"  width="4.5" height="2" position="7.5 1 0">
                         <a-sphere radius=".1" color="white" position="-2.25 -1 0"></a-sphere>
                         <a-sphere radius=".1" color="white" position="2.25 -1 0"></a-sphere>
                     </a-box>
-                    <a-box static-body color="white" depth=".01"  width="3" height="2" position="-7.5 1 2" rotation="0 90 0">
+                    <a-box static-body color="white" depth=".01"  width="3" height="2" position="-7.5 1 0" rotation="0 90 0">
                         <a-sphere radius=".1" color="white" position="-1.5 -1 0"></a-sphere>
                         <a-sphere radius=".1" color="white" position="1.5 -1 0"></a-sphere>
                     </a-box>
 
+                    <!-- Reliques -->
+                    <a-obj-model src="#upper-cabinet-obj" mtl="#upper-cabinet-mtl" scale=".4 .4 .4" position="1.5 2.75 -1"></a-obj-model>
+                    <a-obj-model src="#upper-cabinet-obj" mtl="#upper-cabinet-mtl" scale=".4 .4 .4" position="4.5 2.75 1" rotation="0 180 0"></a-obj-model>
+                    <a-obj-model src="#upper-cabinet-obj" mtl="#upper-cabinet-mtl" scale=".4 .4 .4" position="8.5 2.75 1" rotation="0 180 0"></a-obj-model>
+
                     <!-- 4 pieces du fond (gauche-droite) -->
                     <a-entity position="-11.25 0 -10"><!-- Piece 1 (lecture) -->
+                        <a-obj-model src="#bibliotheque-obj" color="#740" scale=".6 .8 .4" position="-2 1.5 -4.7"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="-1 0 -4.7"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="-1 1.4 -4.7"></a-obj-model>
+                        <a-obj-model src="#bibliotheque-obj" color="#740" scale=".6 .8 .4" position="1 1.5 -4.7"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="2 0 -4.7"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="2 1.4 -4.7"></a-obj-model>
 
+                        <a-obj-model src="#bibliotheque-obj" color="#740" scale=".6 .8 .4" position="-3 1.5 -2" rotation="0 90 0"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="-3 0 0" rotation="0 90 0"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="-3 1.4 0" rotation="0 90 0"></a-obj-model>
+                        <a-obj-model src="#bibliotheque-obj" color="#740" scale=".6 .8 .4" position="-3 1.5 2" rotation="0 90 0"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="-3 0 4" rotation="0 90 0"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="-3 1.4 4" rotation="0 90 0"></a-obj-model>
+
+                        <a-obj-model src="#bibliotheque-obj" color="#740" scale=".6 .8 .4" position="3.4 1.5 -2" rotation="0 -90 0"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="3.4 0 0" rotation="0 -90 0"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="3.4 1.4 0" rotation="0 -90 0"></a-obj-model>
+                        <a-obj-model src="#bibliotheque-obj" color="#740" scale=".6 .8 .4" position="3.4 1.5 2" rotation="0 -90 0"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="3.4 0 3" rotation="0 -90 0"></a-obj-model>
+                        <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="3.4 1.4 3" rotation="0 -90 0"></a-obj-model>
                     </a-entity>
 
                     <a-entity position="-3.75 0 -10"><!-- Piece 2 (projection) -->
-                        <!-- Fait tout planter --><!-- <a-video src="#ys-movie"  width="4" height="2.25" position="0 1.5 -4.74"></a-video> -->
+                        <!-- Fait tout planter au refresh --><!-- <a-video src="#ys-movie"  width="4" height="2.25" position="0 1.5 -4.74"></a-video> -->
+
+                        <a-obj-model src="#sofa-obj" mtl="#sofa-mtl" scale=".01 .01 .01" position="-.5 0 -1" rotation="0 180 0"></a-obj-model>
+                        <a-obj-model src="#sofa-obj" mtl="#sofa-mtl" scale=".01 .01 .01" position="-.5 0 1" rotation="0 180 0"></a-obj-model>
+                        <a-obj-model src="#sofa-obj" mtl="#sofa-mtl" scale=".01 .01 .01" position="-.5 0 3" rotation="0 180 0"></a-obj-model>
+
+                        <a-obj-model src="#sofa-obj" mtl="#sofa-mtl" scale=".01 .01 .01" position="3.5 0 -1" rotation="0 180 0"></a-obj-model>
+                        <a-obj-model src="#sofa-obj" mtl="#sofa-mtl" scale=".01 .01 .01" position="3.5 0 1" rotation="0 180 0"></a-obj-model>
+                        <a-obj-model src="#sofa-obj" mtl="#sofa-mtl" scale=".01 .01 .01" position="3.5 0 3" rotation="0 180 0"></a-obj-model>
                     </a-entity>
 
                     <a-entity position="3.75 0 -10"><!-- Piece 3 (tableaux) -->
