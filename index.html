@@ -50,31 +50,32 @@
 
                 <a-asset-item id="penguin-obj" src="assets/models/penguin/penguin.obj"></a-asset-item>
                 <a-asset-item id="penguin-mtl" src="assets/models/penguin/penguin.mtl"></a-asset-item>
-                
+
                 <a-asset-item id="door-obj" src="assets/models/accordionFoldDoors.obj"></a-asset-item>
                 <a-asset-item id="door-mtl" src="assets/models/accordionFoldDoors.mtl"></a-asset-item>
 
+                <a-asset-item id="speaker-obj" src="assets/models/speaker3.obj"></a-asset-item>
+                <a-asset-item id="speaker-mtl" src="assets/models/speaker3.mtl"></a-asset-item>
+
                 <!-- Tableaux -->
-                <a-asset-item id="t1-obj" src="assets/models/tableaux/AntelopeCanyonFrame.obj"></a-asset-item>
-                <a-asset-item id="t2-obj" src="assets/models/tableaux/ficus.obj"></a-asset-item>
-                <a-asset-item id="t3-obj" src="assets/models/tableaux/frame_horizontal.obj"></a-asset-item>
-                <a-asset-item id="t4-obj" src="assets/models/tableaux/frame_vertical.obj"></a-asset-item>
-                <a-asset-item id="t5-obj" src="assets/models/tableaux/NiagaraFallsFrame.obj"></a-asset-item>
-                <a-asset-item id="t6-obj" src="assets/models/tableaux/EtretatFrame.obj"></a-asset-item>
-                <a-asset-item id="t7-obj" src="assets/models/tableaux/frame3HorizontalNorwayPhotos.obj"></a-asset-item>
-                <a-asset-item id="t8-obj" src="assets/models/tableaux/frame_square.obj"></a-asset-item>
-                <a-asset-item id="t9-obj" src="assets/models/tableaux/HaiVanPassFrame.obj"></a-asset-item>
-                <a-asset-item id="t10-obj" src="assets/models/tableaux/YosemiteFrame.obj"></a-asset-item>
-                <a-asset-item id="t1-mtl" src="assets/models/tableaux/AntelopeCanyonFrame.mtl"></a-asset-item>
-                <a-asset-item id="t2-mtl" src="assets/models/tableaux/ficus.mtl"></a-asset-item>
-                <a-asset-item id="t3-mtl" src="assets/models/tableaux/frame_horizontal.mtl"></a-asset-item>
-                <a-asset-item id="t4-mtl" src="assets/models/tableaux/frame_vertical.mtl"></a-asset-item>
-                <a-asset-item id="t5-mtl" src="assets/models/tableaux/NiagaraFallsFrame.mtl"></a-asset-item>
-                <a-asset-item id="t6-mtl" src="assets/models/tableaux/EtretatFrame.mtl"></a-asset-item>
-                <a-asset-item id="t7-mtl" src="assets/models/tableaux/frame3HorizontalNorwayPhotos.mtl"></a-asset-item>
-                <a-asset-item id="t8-mtl" src="assets/models/tableaux/frame_square.mtl"></a-asset-item>
-                <a-asset-item id="t9-mtl" src="assets/models/tableaux/HaiVanPassFrame.mtl"></a-asset-item>
-                <a-asset-item id="t10-mtl" src="assets/models/tableaux/YosemiteFrame.mtl"></a-asset-item>
+                <a-asset-item id="t1-obj" src="assets/models/paintings/AntelopeCanyonFrame.obj"></a-asset-item>
+                <a-asset-item id="t2-obj" src="assets/models/paintings/YosemiteFrame.obj"></a-asset-item>
+                <a-asset-item id="t3-obj" src="assets/models/paintings/frame_horizontal.obj"></a-asset-item>
+                <a-asset-item id="t4-obj" src="assets/models/paintings/frame_vertical.obj"></a-asset-item>
+                <a-asset-item id="t5-obj" src="assets/models/paintings/NiagaraFallsFrame.obj"></a-asset-item>
+                <a-asset-item id="t6-obj" src="assets/models/paintings/EtretatFrame.obj"></a-asset-item>
+                <a-asset-item id="t7-obj" src="assets/models/paintings/frame3HorizontalNorwayPhotos.obj"></a-asset-item>
+                <a-asset-item id="t8-obj" src="assets/models/paintings/frame_square.obj"></a-asset-item>
+                <a-asset-item id="t9-obj" src="assets/models/paintings/HaiVanPassFrame.obj"></a-asset-item>
+                <a-asset-item id="t1-mtl" src="assets/models/paintings/AntelopeCanyonFrame.mtl"></a-asset-item>
+                <a-asset-item id="t2-mtl" src="assets/models/paintings/YosemiteFrame.mtl"></a-asset-item>
+                <a-asset-item id="t3-mtl" src="assets/models/paintings/frame_horizontal.mtl"></a-asset-item>
+                <a-asset-item id="t4-mtl" src="assets/models/paintings/frame_vertical.mtl"></a-asset-item>
+                <a-asset-item id="t5-mtl" src="assets/models/paintings/NiagaraFallsFrame.mtl"></a-asset-item>
+                <a-asset-item id="t6-mtl" src="assets/models/paintings/EtretatFrame.mtl"></a-asset-item>
+                <a-asset-item id="t7-mtl" src="assets/models/paintings/frame3HorizontalNorwayPhotos.mtl"></a-asset-item>
+                <a-asset-item id="t8-mtl" src="assets/models/paintings/frame_square.mtl"></a-asset-item>
+                <a-asset-item id="t9-mtl" src="assets/models/paintings/HaiVanPassFrame.mtl"></a-asset-item>
 
                 <!-- Etc -->
                 <!-- <video id="ys-movie" autoplay loop="true" src="videos/ys-movie-short.webm"> -->
@@ -107,9 +108,8 @@
 
 
             <a-entity position="0 -3.25 -60"> <!-- Note : J'enlève 0.002 aux largeurs pour éviter le scintillement lié à la superposition de certains plans. -->
-                <!-- Note (physics) : Le joueur n'est bloqué par les static-body que s'ils sont dans la même entity que la camera. -->
-                <!-- <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5" position="-11.25 5.14 -10"> -->
-                <a-camera kinematic-body universal-controls="movementEnabled: true" jump-ability="enableDoubleJump: true; distance: 5" position="0 5.14 10">
+                <!-- Note (physics) : Le joueur ne semble être bloqué par les static-body que s'ils sont dans la même entity que la camera. -->
+                <a-camera kinematic-body="mass: 1" universal-controls="movementEnabled: true" jump-ability="distance: 4" position="0 5.14 10">
                         <a-sphere radius=".2" shader="flat" color="lightblue" light="type: point; intensity: .25; color: lightblue;" position="0.8 -0.5 -1.5"></a-sphere> <!--Lampe -->
                         <a-plane width=".05" height="1" rotation="0 0 90" position="0 -1 -2"></a-plane> <!-- Règle (mesure) -->
 
@@ -122,8 +122,8 @@
 
                 <!-- Mer -->
                 <!-- <a-plane static-body color="#0088FF" width="1000" height="1000" rotation="-90 0 0" position="0 -2.5 0"></a-plane> -->
-                <a-ocean color="#92E2E2" width="50" depth="50" density="10" speed="2"></a-ocean>
-                
+                <a-ocean static-body color="#92E2E2" width="50" depth="50" density="10" speed="2"></a-ocean>
+
                 <a-plane static-body color="#000201" opacity=".8" width="250" height="50" rotation="-90 0 0" position="150 -0.5 0"></a-plane>
                 <a-plane static-body color="#000201" opacity=".8" width="250" height="50" rotation="-90 0 0" position="-150 -0.5 0"></a-plane>
                 <a-plane static-body color="#000201" opacity=".8" width="250" height="250" rotation="-90 0 0" position="-150 -0.5 150"></a-plane>
@@ -132,8 +132,8 @@
                 <a-plane static-body color="#000201" opacity=".8" width="250" height="250" rotation="-90 0 0" position="-150 -0.5 -150"></a-plane>
                 <a-plane static-body color="#000201" opacity=".8" width="50" height="250" rotation="-90 0 0" position="0 -0.5 -150"></a-plane>
                 <a-plane static-body color="#000201" opacity=".8" width="250" height="250" rotation="-90 0 0" position="150 -0.5 -150"></a-plane>
-                
-                <a-plane static-body color="#7FFFFF" width="800" height="800" rotation="-90 0 0" position="0 -3 0"></a-plane>
+
+                <a-plane static-body color="#7FFFFF" width="800" height="800" rotation="-90 0 0" position="0 -4 0"></a-plane>
 
 
                 <!-- Plateforme / DÉBUT -->
@@ -215,8 +215,7 @@
 
                 <!-- Murs intérieurs / DÉBUT -->
                 <!-- Mezzanine -->
-                <a-box static-body src="#mur" repeat="15 5" depth=".25" width="29.998" height="9.998" position="0 6.375 -10" rotation="90 0 0"></a-box>
-                <a-plane static-body src="#parquet" repeat="6 2" width="29.998" height="9.998" position="0 6.51 -10" rotation="-90 0 0"></a-plane>
+                <a-box static-body src="#parquet" repeat="6 2" depth=".25" width="29.998" height="9.998" position="0 6.375 -10" rotation="90 0 0"></a-box>
 
                 <!-- Cloisons fixes -->
                 <a-box static-body src="#mur" repeat="5 1.5" depth=".25" width="9.998" height="3" position="0 4.75 -10" rotation="0 90 0"></a-box>
@@ -245,7 +244,7 @@
                 <!-- Stair collider -->
                 <a-plane static-body opacity="0" width="1" height="5.5" rotation="-51 0 0" position="13.6 5 -2.9"></a-plane>
 
-                <!-- Mobilier & objets -->
+                <!-- Mobilier & objets / DÉBUT -->
                 <a-entity position="0 3.25 0"><!-- Hall -->
 
                     <!-- Escaliers -->
@@ -257,42 +256,58 @@
                         <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
                         <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
                     </a-box>
-                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="0 1 -4.3">
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="0 1 -4.3"><!-- Hitbox -->
                         <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="0 -1 0"></a-obj-model>
                         <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
                         <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
-                    </a-box><!-- Hitbox -->
-                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="7.5 1 -4.3">
+                    </a-box>
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="7.5 1 -4.3"><!-- Hitbox -->
                         <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="0 -1 0"></a-obj-model>
                         <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
                         <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
-                    </a-box><!-- Hitbox -->
+                    </a-box>
 
-                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="-10 1 4.2">
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="-10 1 4.2"><!-- Hitbox -->
                         <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="0 -1 0"></a-obj-model>
                         <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
                         <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
-                    </a-box><!-- Hitbox -->
-                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="-6 1 4.2">
+                    </a-box>
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="-6 1 4.2"><!-- Hitbox -->
                         <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="0 -1 0"></a-obj-model>
                         <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
                         <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
-                    </a-box><!-- Hitbox -->
-                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="6 1 4.2">
+                    </a-box>
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="6 1 4.2"><!-- Hitbox -->
                         <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="0 -1 0"></a-obj-model>
                         <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
                         <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
-                    </a-box><!-- Hitbox -->
-                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="10 1 4.2">
+                    </a-box>
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="1" width="2" height="2" position="10 1 4.2"><!-- Hitbox -->
                         <a-obj-model src="#wood-table-obj" color="#630" scale=".025 .025 .025" position="0 -1 0"></a-obj-model>
                         <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
                         <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
-                    </a-box><!-- Hitbox -->
+                    </a-box>
 
-                    <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="-13.8 0 -4"></a-obj-model>
-                    <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="-13.8 0 -0.1"></a-obj-model>
-                    <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="-13.8 0 3.8"></a-obj-model>
-                    <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="13.8 0 3.8"></a-obj-model>
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="2" width="2" height="2" position="-13.8 1 -4"><!-- Hitbox -->
+                        <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="0 -1 0"></a-obj-model>
+                        <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
+                        <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
+                    </a-box>
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="2" width="2" height="2" position="-13.8 1 -0.1"><!-- Hitbox -->
+                        <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="0 -1 0"></a-obj-model>
+                        <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
+                        <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
+                    </a-box>
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="2" width="2" height="2" position="-13.8 1 3.8"><!-- Hitbox -->
+                        <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="0 -1 0"></a-obj-model>
+                        <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
+                        <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
+                    </a-box>
+                    <a-box gaze-anim color="lightblue" opacity="0" depth="2" width="2" height="2" position="13.8 1 3.8"><!-- Hitbox -->
+                        <a-obj-model src="#marble-table-obj" mtl="#marble-table-mtl" scale=".015 .015 .015" position="0 -1 0"></a-obj-model>
+                        <a-animation begin="hitboxIn" attribute="material.opacity" from="0" to="0.4" dur="1000"></a-animation>
+                        <a-animation begin="hitboxOut" attribute="material.opacity" from="0.4" to="0" dur="1000"></a-animation>
+                    </a-box>
 
                     <!-- Cloisons amovibles -->
                     <a-box static-body color="white" depth=".01" width="4.5" height="2" position="0 1 0">
@@ -339,7 +354,7 @@
                     <!-- 4 pieces du fond (gauche-droite) -->
                     <a-entity position="-11.25 0 -10"><!-- Piece 1 (lecture) -->
                         <a-sphere class="lightRoom" id="lRoom1" radius=".2" shader="flat" color="grey" position="0 3 0"></a-sphere> <!--Lampe -->
-                        
+
                         <a-obj-model src="#bibliotheque-obj" color="#740" scale=".6 .8 .4" position="-2 1.5 -4.7"></a-obj-model>
                         <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="-1 0 -4.7"></a-obj-model>
                         <a-obj-model src="#smallbookshelves-obj" mtl="#smallbookshelves-mtl" scale=".45 .45 .45" position="-1 1.4 -4.7"></a-obj-model>
@@ -364,8 +379,10 @@
 
                     <a-entity position="-3.75 0 -10"><!-- Piece 2 (projection) -->
                         <a-sphere class="lightRoom" id="lRoom2" radius=".2" shader="flat" color="grey" position="0 3 0"></a-sphere> <!--Lampe -->
-                        
+
                         <!-- Fait tout planter au refresh --><!-- <a-video src="#ys-movie"  width="4" height="2.25" position="0 1.5 -4.74"></a-video> -->
+                        <a-obj-model src="#speaker-obj" mtl="#speaker-mtl" scale=".02 .02 .02" position="-3.75 1 -4" rotation="0 45 0"></a-obj-model>
+                        <a-obj-model src="#speaker-obj" mtl="#speaker-mtl" scale=".02 .02 .02" position="3 1 -5" rotation="0 -45 0"></a-obj-model>
 
                         <a-obj-model src="#sofa-obj" mtl="#sofa-mtl" scale=".01 .01 .01" position="-.5 0 -1" rotation="0 180 0"></a-obj-model>
                         <a-obj-model src="#sofa-obj" mtl="#sofa-mtl" scale=".01 .01 .01" position="-.5 0 1" rotation="0 180 0"></a-obj-model>
@@ -380,15 +397,27 @@
                         <a-sphere class="lightRoom" id="lRoom3" radius=".2" shader="flat" color="grey" position="0 3 0"></a-sphere> <!--Lampe -->
 
                         <a-obj-model src="#t1-obj" mtl="#t1-mtl" scale=".04 .04 .04" position="0 .5 -4.70" rotation="0 0 -90"></a-obj-model>
+
+                        <a-obj-model src="#t4-obj" mtl="#t4-mtl" scale=".015 .015 .015" position="-3.5 -1.7 -1.7" rotation="0 90 0"></a-obj-model>
+                        <a-obj-model src="#t6-obj" mtl="#t6-mtl" scale=".03 .03 .03" position="-3.5 1.5 2" rotation="0 90 0"></a-obj-model>
+
+                        <a-obj-model src="#t7-obj" mtl="#t7-mtl" scale=".03 .03 .03" position="3.5 1.5 -3" rotation="0 -90 0"></a-obj-model>
+                        <a-obj-model src="#t8-obj" mtl="#t8-mtl" scale=".015 .015 .015" position="3.5 .75 2.75" rotation="0 -90 0"></a-obj-model>
                     </a-entity>
 
                     <a-entity position="11.25 0 -10"><!-- Piece 4 (tableaux) -->
                         <a-sphere class="lightRoom" id="lRoom4" radius=".2" shader="flat" color="grey" position="0 3 0"></a-sphere> <!--Lampe -->
 
-                        <a-obj-model src="#t3-obj" mtl="#t3-mtl" scale=".02 .02 .02" position="0 .3 -4.70"></a-obj-model>
+                        <a-obj-model src="#t3-obj" mtl="#t3-mtl" scale=".015 .015 .015" position="0 .45 -4.70"></a-obj-model>
+
+                        <a-obj-model src="#t2-obj" mtl="#t2-mtl" scale=".03 .03 .03" position="-3.5 1.5 -3" rotation="0 90 0"></a-obj-model>
+                        <a-obj-model src="#t9-obj" mtl="#t9-mtl" scale=".03 .03 .03" position="-3.5 1.5 3" rotation="0 90 0"></a-obj-model>
+
+                        <a-obj-model src="#t5-obj" mtl="#t5-mtl" scale=".05 .05 .05" position="3.3 1.5 0" rotation="0 -90 0"></a-obj-model>
                     </a-entity>
 
                 </a-entity>
+                <!-- Mobilier & objets / FIN -->
             </a-entity>
         </a-scene>
 
@@ -419,13 +448,14 @@
                     }
                 });
 
-                // Animations gaze
+                // Animations gaze (amer)
                 var hovEls = document.querySelectorAll('[gaze-anim]');
                 for (var i = 0; i < hovEls.length; i++) {
                     hovEls[i].addEventListener('click', function(evt) {
                         var _from = player.getAttribute('position');
                         var to = this.getAttribute('position');
 
+                        // Pour arriver à distance de l'amer
                         var dx = _from.x - to.x;
                         var dz = _from.z - to.z
 
